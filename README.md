@@ -126,23 +126,21 @@ Remember to wrap your inputs into a `<form class="form-horizontal">` on PS 1.6
 </ps-checkboxes>
 ```
 
-####`<ps-form-group>`, `<ps-radios>`, `<ps-checkboxes>`
-You can use `<ps-form-group>` to wrap form fields, a select for exemple.
+####`<ps-form-group>`, `<ps-radios>`, `<ps-checkboxes>` and all the form tags (except `ps-radio` and `ps-checkbox`) include the following attributes:
 
 attribute|optional|value|comment
 ---------|--------|-----|-------
 label|no|text|
 help|yes|text|Some help under the field
 hint|yes|text|Hidden help inside label's text
+
+You can use `<ps-form-group>` to wrap form fields, a select for exemple.
 
 ####`<ps-input-text>`
 
 attribute|optional|value|comment
 ---------|--------|-----|-------
-label|no|text|
 name|no|text|
-help|yes|text|Some help under the field
-hint|yes|text|Hidden help inside label's text
 size|yes|int|Input's size for PS 1.5/1.4
 fixed-width|yes|xs / sm / md / lg / xl / xxl
 prefix|yes|text|
@@ -152,10 +150,7 @@ suffix|yes|text|
 
 attribute|optional|value|comment
 ---------|--------|-----|-------
-label|no|text|
 name|no|text|
-help|yes|text|Some help under the field
-hint|yes|text|Hidden help inside label's text
 yes|no|text|Label for the active state
 no|no|text|Label for the deactive state
 active|yes|true / false|Switch's state
