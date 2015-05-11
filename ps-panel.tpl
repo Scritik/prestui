@@ -27,6 +27,15 @@
 		<div class="{if $ps_version == '1.6'}panel-footer{else}margin-form{/if}">
 			<yield/>
 		</div>
+
+		<style scoped>
+			.btn.pull-right {
+				margin-left: 5px;
+			}
+			.btn.pull-left {
+				margin-right: 5px;
+			}
+		</style>
 	</ps-panel-footer>
 </script>
 
