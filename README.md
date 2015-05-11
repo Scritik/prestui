@@ -137,6 +137,7 @@ attribute|optional|value|comment
 label|no|text|
 help|yes|text|Some help under the field
 hint|yes|text|Hidden help inside label's text
+required|yes|true|Mark a field as required
 
 You can use `<ps-form-group>` to wrap form fields, a select for exemple.
 

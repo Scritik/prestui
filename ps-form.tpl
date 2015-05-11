@@ -29,7 +29,7 @@
 		{if $ps_version == '1.6'}
 
 			<div class="form-group">
-				<label class="control-label col-lg-3">
+				<label class="control-label col-lg-3 { opts.required == 'true' ? 'required' : '' }">
 					<span class="label-tooltip" data-toggle="tooltip" data-html="true" data-original-title="{ opts.hint }" if={ opts.hint }>{ opts.label }</span>
 					<span if={ !opts.hint }>{ opts.label }</span>
 				</label>
@@ -41,7 +41,7 @@
 
 			<div style="clear: both; padding-top:15px;">
 
-				<label class="conf_title">{ opts.label }</label>
+				<label class="conf_title"><sup if={ opts.required }>*&nbsp;</sup>{ opts.label }</label>
 				<div class="margin-form">
 					<yield/>
 					<p class="preference_description" if={ opts.help }>{ opts.help }</p>
@@ -68,7 +68,7 @@
 
 			{else}
 
-				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span><sup if={ opts.required }>*</sup>
+				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
 
 			{/if}
 
