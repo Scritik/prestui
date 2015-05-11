@@ -125,6 +125,8 @@ Remember to wrap your inputs into a `<form class="form-horizontal">` on PS 1.6
 	<ps-checkbox name="versions[]" value="1.6">1.6</ps-checkbox>
 </ps-checkboxes>
 
+<ps-color-picker label="Color" name="color_picker"></ps-color-picker>
+
 <ps-password label="Your password"></ps-password>
 ```
 
