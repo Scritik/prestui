@@ -28,6 +28,7 @@
 
 <script type="text/javascript">
 	var tags = [];
+	var color_picker = false;
 </script>
 
 {if !isset($ps_version)}

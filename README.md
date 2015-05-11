@@ -178,6 +178,15 @@ value|no|text|
 checked|yes|true / false|checkbox's state
 content|no|checkbox's label
 
+####`<ps-color-picker>`
+
+attribute|optional|value|comment
+---------|--------|-----|-------
+name|no|text
+value|no|text|HEX default color. Default: #000000
+size|yes|int|Default: 20
+fixed-width|yes|xs / sm / md / lg / xl / xxl
+
 ## Roadmap
 
 - 0.1 (Released)

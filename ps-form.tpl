@@ -179,6 +179,44 @@
 	</ps-checkbox>
 </script>
 
+<script type="riot/tag">
+	<ps-color-picker>
+		<ps-form-group>
+
+			<div class="{if $ps_version == '1.6'}input-group{/if} { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : 'fixed-width-lg' }">
+				<input type="color" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" value="{ opts.value || '#000000' }" id="{ opts.name }">
+			</div>
+
+			<style scoped>
+				img {
+					border: 0;
+					margin:0 0 0 3px;
+				}
+
+				span {
+					cursor: pointer;
+				}
+			</style>
+
+		</ps-form-group>
+
+		if (color_picker === false) {
+			$.getScript('../js/jquery/plugins/jquery.colorpicker.js');
+			color_picker = true;
+		}
+		this.tags['ps-form-group'].opts = opts
+
+	</ps-color-picker>
+</script>
+
 <script type="text/javascript">
-	tags.push('ps-input-text', 'ps-form-group', 'ps-switch', 'ps-radios', 'ps-radio', 'ps-checkbox', 'ps-checkboxes', 'ps-input-file');
+	tags.push('ps-input-text',
+						'ps-form-group',
+						'ps-switch',
+						'ps-radios',
+						'ps-radio',
+						'ps-checkbox',
+						'ps-checkboxes',
+						'ps-input-file',
+						'ps-color-picker');
 </script>
