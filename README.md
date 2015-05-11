@@ -124,6 +124,8 @@ Remember to wrap your inputs into a `<form class="form-horizontal">` on PS 1.6
 	<ps-checkbox name="versions[]" value="1.5" checked="true">1.5</ps-checkbox>
 	<ps-checkbox name="versions[]" value="1.6">1.6</ps-checkbox>
 </ps-checkboxes>
+
+<ps-password label="Your password"></ps-password>
 ```
 
 ####`<ps-form-group>`, `<ps-radios>`, `<ps-checkboxes>` and all the form tags (except `ps-radio` and `ps-checkbox`) include the following attributes:
@@ -181,6 +183,12 @@ name|no|text
 value|no|text|HEX default color. Default: #000000
 size|yes|int|Default: 20
 fixed-width|yes|xs / sm / md / lg / xl / xxl
+
+####`<ps-password>`
+
+attribute|optional|value|comment
+---------|--------|-----|-------
+name|no|text
 
 ## Roadmap
 

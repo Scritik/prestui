@@ -209,6 +209,32 @@
 	</ps-color-picker>
 </script>
 
+<script type="riot/tag">
+	<ps-password>
+		<ps-form-group>
+
+			{if $ps_version == '1.6'}
+
+				<div class="input-group { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : 'fixed-width-lg' }">
+					<span class="input-group-addon">
+						<i class="icon-key"></i>
+					</span>
+					<input type="password" name="{ opts.name }">
+				</div>
+
+			{else}
+
+				<input type="password" name="{ opts.name }">
+
+			{/if}
+
+		</ps-form-group>
+
+		this.tags['ps-form-group'].opts = opts
+
+	</ps-password>
+</script>
+
 <script type="text/javascript">
 	tags.push('ps-input-text',
 						'ps-form-group',
