@@ -24,17 +24,70 @@
 
 <script type="riot/tag">
 	<ps-panel-footer>
-		<div class="{if $ps_version == '1.6'}panel-footer{else}margin-form{/if}">
+		<div class="panel-footer">
 			<yield/>
 		</div>
 
 		<style scoped>
-			.btn.pull-right {
-				margin-left: 5px;
-			}
-			.btn.pull-left {
-				margin-right: 5px;
-			}
+
+			{if $ps_version == '1.6'}
+
+				.btn.pull-right {
+					margin-left: 5px;
+				}
+				.btn.pull-left {
+					margin-right: 5px;
+				}
+
+			{else}
+
+				.panel-footer {
+					margin: 20px -13px 0px;
+					background: rgba(182, 182, 182, 0.1);
+					display: block;
+					border-top: 1px solid rgba(160, 160, 160, 0.19);
+					height: 80px;
+					position: relative;
+					bottom: -13px;
+				}
+
+				.btn {
+					margin: 0;
+					background: none;
+					border: none;
+					padding: 0 20px;
+					outline: none;
+					cursor: pointer;
+					font-size: 11px;
+					text-align: center;
+					height: 100%;
+					line-height: normal;
+				}
+
+				.btn.pull-right {
+					border-left: 1px solid rgba(160, 160, 160, 0.19);
+					float: right;
+				}
+
+				.btn.pull-left {
+					border-right: 1px solid rgba(160, 160, 160, 0.19);
+					float: left;
+				}
+
+				.btn:hover {
+					background: rgba(182, 182, 182, 0.1);
+				}
+
+				.btn img {
+					display: block;
+					padding: 0;
+					margin-bottom: 5px;
+					margin-left: auto;
+					margin-right: auto;
+				}
+
+			{/if}
+
 		</style>
 	</ps-panel-footer>
 </script>
@@ -50,7 +103,9 @@
 
 		{else}
 
-			<input type="submit" name="{ opts.name }" value="{ opts.title }" class="button">
+			<button type="submit" class="btn pull-{ opts.direction }" name="{ opts.name }">
+				<img src="{ opts.img }" /> { opts.title }
+			</button>
 
 		{/if}
 
@@ -68,7 +123,17 @@
 
 		{else}
 
-			<a href="{ opts.href }" class="button">{ opts.title }</a>
+			<a class="btn pull-{ opts.direction }" href="{ opts.href }">
+				<img src="{ opts.img }" /> { opts.title }
+			</a>
+
+			<style scoped>
+
+				a img {
+					margin-top: 15px;
+				}
+
+			</style>
 
 		{/if}
 
@@ -102,6 +167,9 @@
 
 				fieldset {
 					margin-bottom: 20px;
+					max-width: 1100px;
+					margin-left: auto;
+					margin-right: auto;
 				}
 
 			</style>

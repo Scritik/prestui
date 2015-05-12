@@ -86,17 +86,19 @@ Content of this tag is the panel's content
 attribute|optional|value|comment
 ---------|--------|-----|-------
 icon|yes|icon's name|Only for PS 1.6
-img|yes|icon's path|Only for PS 1.5 and 1.4
+img|yes|icon's path|Path. Only for PS 1.5 and 1.4
 header|yes|text|Panel's title. HTML allowed.
 
-####`<ps-panel-footer-submit>`
+####`<ps-panel-footer-submit>` and `<ps-panel-footer-link>`
 
 attribute|optional|value|comment
 ---------|--------|-----|-------
-title|no|text|
+label|no|text|
 name|no|text|
 title|no|text|Button's label
 direction|no|right / left|Button's position
+icon|no|icon's name|Only for PS 1.6
+img|no|icon's path|Only for PS 1.5 and 1.4
 
 ### Form
 
