@@ -34,7 +34,7 @@
 					<span if={ !opts.hint }>{ opts.label }</span>
 				</label>
 				<div class="col-lg-9"><yield/></div>
-				<div class="col-lg-9 col-lg-offset-3"><div class="help-block" if={ opts.help }>{ opts.help }</div></div>
+				<div class="col-lg-9 col-lg-offset-3"><div class="help-block" if={ opts.help }><raw content="{ opts.help }"/></div></div>
 			</div>
 
 		{else}
@@ -44,7 +44,7 @@
 				<label class="conf_title"><sup if={ opts.required }>*&nbsp;</sup>{ opts.label }</label>
 				<div class="margin-form">
 					<yield/>
-					<p class="preference_description" if={ opts.help }>{ opts.help }</p>
+					<p class="preference_description" if={ opts.help }><raw content="{ opts.help }"/></p>
 				</div>
 			</div>
 

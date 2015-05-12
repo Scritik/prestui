@@ -27,7 +27,7 @@
 {/if}
 
 <script type="text/javascript">
-	var tags = [];
+	var tags = ['raw'];
 	var color_picker = false;
 </script>
 
@@ -38,6 +38,14 @@
 {foreach from=$tags item=tag}
 	{include file="./ps-$tag.tpl"}
 {/foreach}
+
+<script type="riot/tag">
+	<raw>
+		<span></span>
+
+		this.root.innerHTML = opts.content
+	</raw>
+</script>
 
 <script type="text/javascript">
 	riot.mount(tags.join(', '));
