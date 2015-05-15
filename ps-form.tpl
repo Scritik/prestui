@@ -184,7 +184,7 @@
 		<ps-form-group>
 
 			<div class="{if $ps_version == '1.6'}input-group{/if} { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : 'fixed-width-lg' }">
-				<input type="color" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" value="{ opts.value || '#000000' }" id="{ opts.name }">
+				<input type="color" value="{ opts.color || '#000000' }" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
 			</div>
 
 			<style scoped>
@@ -201,9 +201,14 @@
 		</ps-form-group>
 
 		if (color_picker === false) {
-			$.getScript('../js/jquery/plugins/jquery.colorpicker.js');
+			{if $ps_version == '1.4'}
+				$.getScript('../js/jquery/jquery-colorpicker.js');
+			{else}
+				$.getScript('../js/jquery/plugins/jquery.colorpicker.js');
+			{/if}
 			color_picker = true;
 		}
+
 		this.tags['ps-form-group'].opts = opts
 
 	</ps-color-picker>
