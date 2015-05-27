@@ -233,7 +233,7 @@ name|no|text
 	- Basic inputs
 	- Panel
 	- Tabs
-- 0.2 (with next Riot release)
+- 0.2 (Released)
 	- PS 1.4 compatibility
 	- More inputs
 	- alerts
