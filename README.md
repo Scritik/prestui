@@ -65,6 +65,17 @@ attribute|optional|value|comment
 class|yes|active|Add this attribute to choose the active tab
 target|no|tab-content's id|
 
+### Alerts
+
+``` html
+<ps-alert-success>Saved with success!</ps-alert-success>
+
+<ps-alert-error>Oops, something went wrong!</ps-alert-error>
+
+<ps-alert-hint>Remember to save after any modification</ps-alert-hint>
+
+<ps-alert-warn>You need to update!</ps-alert-warn>
+```
 
 ### Panel
 

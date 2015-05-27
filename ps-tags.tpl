@@ -23,7 +23,7 @@
 *}
 
 {if !isset($tags) || !is_array($tags)}
-	{assign var='tags' value=array('tabs', 'panel', 'form')}
+	{assign var='tags' value=array('tabs', 'panel', 'form', 'alert')}
 {/if}
 
 <script type="text/javascript">
