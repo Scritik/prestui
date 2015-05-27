@@ -129,6 +129,8 @@ Remember to wrap your inputs into a `<form class="form-horizontal">` on PS 1.6
 
 <ps-color-picker label="Color" name="color_picker"></ps-color-picker>
 
+<ps-date-picker id="date_picker" name="date_picker" label="My datepicker" value="03/05/2015"></ps-date-picker>
+
 <ps-password label="Your password"></ps-password>
 ```
 
@@ -187,6 +189,24 @@ attribute|optional|value|comment
 name|no|text
 value|no|text|HEX default color. Default: #000000
 size|yes|int|Default: 20
+fixed-width|yes|xs / sm / md / lg / xl / xxl
+
+####`<ps-date-picker>`
+
+Add the following code in your module to make sure jQuery UI is loaded:
+
+```
+if (_PS_VERSION_ < '1.5')
+	includeDatepicker('');
+else
+	$this->context->controller->addJqueryUI('ui.datepicker');
+```
+
+attribute|optional|value|comment
+---------|--------|-----|-------
+name|no|text
+value|no|text|default date
+size|yes|int
 fixed-width|yes|xs / sm / md / lg / xl / xxl
 
 ####`<ps-password>`

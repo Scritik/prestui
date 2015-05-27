@@ -240,6 +240,44 @@
 	</ps-password>
 </script>
 
+<script type="riot/tag">
+	<ps-date-picker>
+		<ps-form-group>
+
+			{if $ps_version == '1.6'}
+
+				<div class="input-group { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : 'fixed-width-lg' }">
+					<input id="{ opts.name }" type="text" data-hex="true" class="datepicker" name="{ opts.name }" value="{ opts.value }" />
+					<span class="input-group-addon">
+						<i class="icon-calendar-empty"></i>
+					</span>
+				</div>
+
+			{else}
+
+				<input id="{ opts.name }" type="text" data-hex="true" size="{ opts.size }" class="datepicker" name="{ opts.name }" value="{ opts.value }" />
+
+			{/if}
+
+		</ps-form-group>
+
+		this.tags['ps-form-group'].opts = opts
+
+	</ps-date-picker>
+</script>
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+		if ($("ps-date-picker .datepicker").length > 0) {
+			$("ps-date-picker .datepicker").datepicker({
+					prevText: '',
+					nextText: '',
+					altFormat: 'yy-mm-dd'
+			});
+		}
+	});
+</script>
+
 <script type="text/javascript">
 	tags.push('ps-input-text',
 						'ps-form-group',
@@ -249,5 +287,6 @@
 						'ps-checkbox',
 						'ps-checkboxes',
 						'ps-input-file',
-						'ps-color-picker');
+						'ps-color-picker',
+						'ps-date-picker');
 </script>
