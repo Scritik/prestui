@@ -165,6 +165,7 @@ size|yes|int|Input's size for PS 1.5/1.4
 fixed-width|yes|xs / sm / md / lg / xl / xxl
 prefix|yes|text|
 suffix|yes|text|
+placeholder|yes|text|
 
 ####`<ps-switch>`
 

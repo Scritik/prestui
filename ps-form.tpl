@@ -62,13 +62,13 @@
 
 				<div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : '' }{/literal}">
 					<span class="input-group-addon" if={ opts.prefix }>{ opts.prefix}</span>
-					<input type="text" name="{ opts.name }" value="{ opts.value }" class="input { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : '' }">
+					<input type="text" name="{ opts.name }" value="{ opts.value }" class="input { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : '' }" placeholder="{ opts.placeholder }">
 					<span class="input-group-addon" if={ opts.suffix }>{ opts.suffix}</span>
 				</div>
 
 			{else}
 
-				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
+				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }" placeholder="{ opts.placeholder }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
 
 			{/if}
 
