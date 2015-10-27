@@ -229,7 +229,7 @@
 
 			{else}
 
-				<input type="password" name="{ opts.name }">
+				<input type="password" size="{ opts.size }" name="{ opts.name }">
 
 			{/if}
 
