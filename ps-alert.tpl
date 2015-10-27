@@ -52,6 +52,7 @@
 
 				div {
 					position: relative;
+					padding-right: 25px !important;
 				}
 
 				img.close {
