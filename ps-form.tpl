@@ -26,7 +26,7 @@
 <script type="riot/tag">
 	<ps-form-group>
 
-		{if $ps_version == '1.6'}
+		{if $ps_version >= 1.6}
 
 			<div class="form-group">
 				<label class="control-label col-lg-3 { opts.required == 'true' ? 'required' : '' }">
@@ -58,7 +58,7 @@
 
 		<ps-form-group>
 
-			{if $ps_version == '1.6'}
+			{if $ps_version >= 1.6}
 
 				<div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }{/literal}">
 					<span class="input-group-addon" if={ opts.prefix }>{ opts.prefix}</span>
@@ -84,7 +84,7 @@
 
 		<ps-form-group>
 
-			{if $ps_version == '1.6'}
+			{if $ps_version >= 1.6}
 
 				<span class="switch prestashop-switch fixed-width-lg">
 					<input type="radio" name="{ opts.name }" id="{ opts.name }_on" value="1" checked={ opts.active == 'true' } disabled="{ opts.disabled == 'true' }">
@@ -127,7 +127,7 @@
 <script type="riot/tag">
 	<ps-radio>
 
-		{if $ps_version == '1.6'}
+		{if $ps_version >= 1.6}
 
 			<div class="radio">
 				<label><input type="radio" name="{ opts.name }" id="{ opts.name }_{ opts.value }" value="{ opts.value }" checked={ opts.checked == 'true' }><yield/></label>
@@ -159,7 +159,7 @@
 <script type="riot/tag">
 	<ps-checkbox>
 
-		{if $ps_version == '1.6'}
+		{if $ps_version >= 1.6}
 
 			<div class="checkbox">
 				<label for="{ opts.name }_{ opts.value }">
@@ -218,7 +218,7 @@
 	<ps-password>
 		<ps-form-group>
 
-			{if $ps_version == '1.6'}
+			{if $ps_version >= 1.6}
 
 				<div class="input-group { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
 					<span class="input-group-addon">
@@ -244,7 +244,7 @@
 	<ps-date-picker>
 		<ps-form-group>
 
-			{if $ps_version == '1.6'}
+			{if $ps_version >= 1.6}
 
 				<div class="input-group { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
 					<input id="{ opts.name }" type="text" data-hex="true" class="datepicker" name="{ opts.name }" value="{ opts.value }" required="{ opts.requiredInput == 'true' }" />

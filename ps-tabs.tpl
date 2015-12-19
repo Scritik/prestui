@@ -29,7 +29,7 @@
 			<yield/>
 		</div>
 
-		{if $ps_version == '1.6'}
+		{if $ps_version >= 1.6}
 
 			<style scoped>
 				.tab-content {
@@ -42,8 +42,8 @@
 
 			<style scoped>
 				.tab-content {
-					background-color: {if $ps_version == '1.4'}#FFFFF0{else}#ebedf4{/if};
-					border: 1px solid {if $ps_version == '1.4'}#DFD5C3{else}#ccced7{/if};
+					background-color: #ebedf4;
+					border: 1px solid #ccced7;
 					min-height: 350px;
 					padding: 20px;
 					margin-left: 140px;
@@ -70,7 +70,7 @@
 
 		<a href="#{ opts.target }" data-toggle="tab" onclick={ changeTab } ><yield/></a>
 
-		{if $ps_version != '1.6'}
+		{if $ps_version == 1.5}
 
 			<style>
 				ps-tab-nav a {
@@ -105,11 +105,11 @@
 			<yield/>
 		</ul>
 
-		{if $ps_version != '1.6'}
+		{if $ps_version == 1.5}
 
 			<style scoped>
 				.active a {
-					background-color: {if $ps_version == '1.4'}#FFFFF0{else}#ebedf4{/if};
+					background-color: #ebedf4;
 					font-weight: bold;
 					color: #000;
 					border-right: none;
@@ -134,11 +134,11 @@
 
 		<yield/>
 
-		{if $ps_version != '1.6'}
+		{if $ps_version == 1.5}
 			<style scoped>
 				ps-tab-nav {
 					background-color: #fafafa;
-					border: 1px solid {if $ps_version == '1.4'}#DFD5C3{else}#ccced7{/if};
+					border: 1px solid #ccced7;
 					border-right: none;
 					border-top: none;
 					float: left;

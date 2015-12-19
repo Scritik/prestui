@@ -25,25 +25,16 @@
 <script type="riot/tag">
 	<ps-alert>
 
-		{if $ps_version == '1.6'}
+		{if $ps_version >= 1.6}
 
-			<div class="alert { opts['oneSixClass'] }">
+			<div class="alert { opts['alertClass'] }">
 				<button type="button" class="close" data-dismiss="alert">×</button>
 				<yield/>
 			</div>
 
 		{else}
 
-			{if $ps_version == '1.5'}
-
-				<div class="{ opts['oneFiveClass'] }">
-
-			{else}
-
-				<div class="{ opts['oneFourClass'] }">
-					<img src="{ opts.img }" if={ opts.img }>
-			{/if}
-
+			<div class="{ opts['alertClass'] }">
 				<yield/>
 				<img class="close" alt="X" src="../img/admin/close.png" onclick={ hide }>
 			</div>
@@ -59,7 +50,7 @@
 					margin: 0 !important;
 					position: absolute;
 					right: 10px;
-					top: {if $ps_version == '1.5'}15{else}12{/if}px;
+					top: 15px;
 					cursor: pointer;
 				}
 
@@ -78,7 +69,9 @@
 <script type="riot/tag">
 	<ps-alert-success>
 
-		<ps-alert one-six-class="module_confirmation conf confirm alert-success" one-five-class="module_confirmation conf confirm" one-four-class="conf" img="../img/admin/ok2.png"><yield/></ps-alert>
+		<ps-alert alert-class="{if $ps_version == 1.5}conf{else}alert alert-success{/if}">
+			<yield/>
+		</ps-alert>
 
 	</ps-alert-success>
 </script>
@@ -86,7 +79,9 @@
 <script type="riot/tag">
 	<ps-alert-error>
 
-		<ps-alert one-six-class="alert-danger" one-five-class="module_error alert error" one-four-class="error" img="../img/admin/error2.png"><yield/></ps-alert>
+		<ps-alert alert-class="{if $ps_version == 1.5}error{else}alert alert-danger{/if}">
+			<yield/>
+		</ps-alert>
 
 	</ps-alert-error>
 </script>
@@ -94,7 +89,9 @@
 <script type="riot/tag">
 	<ps-alert-warn>
 
-		<ps-alert one-six-class="alert-warning" one-five-class="warn" one-four-class="warn" img="../img/admin/warn2.png"><yield/></ps-alert>
+		<ps-alert alert-class="{if $ps_version == 1.5}warn{else}alert alert-warning{/if}">
+			<yield/>
+		</ps-alert>
 
 	</ps-alert-warn>
 </script>
@@ -102,25 +99,17 @@
 <script type="riot/tag">
 	<ps-alert-hint>
 
-		<ps-alert one-six-class="alert-info" one-five-class="hint" one-four-class="hint clear"><yield/></ps-alert>
+		<ps-alert alert-class="{if $ps_version == 1.5}hint{else}alert alert-info{/if}">
+			<yield/>
+		</ps-alert>
 
-		{if $ps_version != '1.6'}
+		{if $ps_version == 1.5}
 
 			<style scoped>
 				.hint {
 					display: block;
 					margin: 0 0 10px 0;
-					{if $ps_version == '1.4'}
-						padding: 10px 15px 10px 45px;
-						background-position-x: 10px;
-					{/if}
 				}
-
-				{if $ps_version == '1.4'}
-					img.close {
-						top: 10px;
-					}
-				{/if}
 			</style>
 
 		{/if}

@@ -30,7 +30,7 @@
 
 		<style scoped>
 
-			{if $ps_version == '1.6'}
+			{if $ps_version >= 1.6}
 
 				.btn.pull-right {
 					margin-left: 5px;
@@ -95,7 +95,7 @@
 <script type="riot/tag">
 	<ps-panel-footer-submit>
 
-		{if $ps_version == '1.6'}
+		{if $ps_version >= 1.6}
 
 			<button type="submit" class="btn btn-default pull-{ opts.direction }" name="{ opts.name }">
 				<i class="process-icon-{ opts.icon }"></i> { opts.title }
@@ -115,7 +115,7 @@
 <script type="riot/tag">
 	<ps-panel-footer-link>
 
-		{if $ps_version == '1.6'}
+		{if $ps_version >= 1.6}
 
 			<a class="btn btn-default pull-{ opts.direction }" href="{ opts.href }">
 				<i class="process-icon-{ opts.icon }"></i> { opts.title }
@@ -143,7 +143,7 @@
 <script type="riot/tag">
 	<ps-panel>
 
-		{if $ps_version == '1.6'}
+		{if $ps_version >= 1.6}
 
 			<div class="panel">
 				<div class="panel-heading" if={ opts.icon || opts.header }>
