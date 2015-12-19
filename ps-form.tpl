@@ -60,9 +60,9 @@
 
 			{if $ps_version == '1.6'}
 
-				<div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : '' }{/literal}">
+				<div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }{/literal}">
 					<span class="input-group-addon" if={ opts.prefix }>{ opts.prefix}</span>
-					<input type="text" name="{ opts.name }" value="{ opts.value }" class="input { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : '' }" placeholder="{ opts.placeholder }">
+					<input type="text" name="{ opts.name }" value="{ opts.value }" class="input { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }" placeholder="{ opts.placeholder }">
 					<span class="input-group-addon" if={ opts.suffix }>{ opts.suffix}</span>
 				</div>
 
@@ -183,7 +183,7 @@
 	<ps-color-picker>
 		<ps-form-group>
 
-			<div class="{if $ps_version == '1.6'}input-group{/if} { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : 'fixed-width-lg' }">
+			<div class="{if $ps_version == '1.6'}input-group{/if} { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
 				<input type="color" value="{ opts.color || '#000000' }" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
 			</div>
 
@@ -220,7 +220,7 @@
 
 			{if $ps_version == '1.6'}
 
-				<div class="input-group { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : 'fixed-width-lg' }">
+				<div class="input-group { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
 					<span class="input-group-addon">
 						<i class="icon-key"></i>
 					</span>
@@ -246,7 +246,7 @@
 
 			{if $ps_version == '1.6'}
 
-				<div class="input-group { opts['fixed-width'] ? 'fixed-width-'+opts['fixed-width'] : 'fixed-width-lg' }">
+				<div class="input-group { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
 					<input id="{ opts.name }" type="text" data-hex="true" class="datepicker" name="{ opts.name }" value="{ opts.value }" />
 					<span class="input-group-addon">
 						<i class="icon-calendar-empty"></i>

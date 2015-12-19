@@ -27,7 +27,7 @@
 
 		{if $ps_version == '1.6'}
 
-			<div class="alert { opts['one-six-class'] }">
+			<div class="alert { opts['oneSixClass'] }">
 				<button type="button" class="close" data-dismiss="alert">×</button>
 				<yield/>
 			</div>
@@ -36,11 +36,11 @@
 
 			{if $ps_version == '1.5'}
 
-				<div class="{ opts['one-five-class'] }">
+				<div class="{ opts['oneFiveClass'] }">
 
 			{else}
 
-				<div class="{ opts['one-four-class'] }">
+				<div class="{ opts['oneFourClass'] }">
 					<img src="{ opts.img }" if={ opts.img }>
 			{/if}
 
