@@ -19,7 +19,6 @@ $this->context->controller->addJS('https://cdn.jsdelivr.net/g/riot@2.0(riot.min.
 You can now include PrestUI like this:
 
 ``` php
-$this->smarty->assign('ps_version', Tools::substr(_PS_VERSION_, 0, 3));
 return $html.$this->display(__FILE__, 'views/templates/admin/prestui/ps-tags.tpl');
 ```
 
