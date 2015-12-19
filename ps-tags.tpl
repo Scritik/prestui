@@ -31,9 +31,7 @@
 	var color_picker = false;
 </script>
 
-{if !isset($ps_version)}
-	{assign var='ps_version' value='1.6'}
-{/if}
+{assign var="ps_version" value=$smarty.const._PS_VERSION_|string_format:"%.1f"}
 
 {foreach from=$tags item=tag}
 	{include file="./ps-$tag.tpl"}
