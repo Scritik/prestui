@@ -62,13 +62,13 @@
 
 				<div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }{/literal}">
 					<span class="input-group-addon" if={ opts.prefix }>{ opts.prefix}</span>
-					<input type="text" name="{ opts.name }" value="{ opts.value }" class="input { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }" placeholder="{ opts.placeholder }">
+					<input type="text" name="{ opts.name }" value="{ opts.value }" class="input { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }" >
 					<span class="input-group-addon" if={ opts.suffix }>{ opts.suffix}</span>
 				</div>
 
 			{else}
 
-				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }" placeholder="{ opts.placeholder }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
+				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
 
 			{/if}
 
@@ -224,12 +224,12 @@
 					<span class="input-group-addon">
 						<i class="icon-key"></i>
 					</span>
-					<input type="password" name="{ opts.name }">
+					<input type="password" name="{ opts.name }" required="{ opts.requiredInput == 'true' }">
 				</div>
 
 			{else}
 
-				<input type="password" size="{ opts.size }" name="{ opts.name }">
+				<input type="password" size="{ opts.size }" name="{ opts.name }" required="{ opts.requiredInput == 'true' }">
 
 			{/if}
 
@@ -247,7 +247,7 @@
 			{if $ps_version == '1.6'}
 
 				<div class="input-group { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
-					<input id="{ opts.name }" type="text" data-hex="true" class="datepicker" name="{ opts.name }" value="{ opts.value }" />
+					<input id="{ opts.name }" type="text" data-hex="true" class="datepicker" name="{ opts.name }" value="{ opts.value }" required="{ opts.requiredInput == 'true' }" />
 					<span class="input-group-addon">
 						<i class="icon-calendar-empty"></i>
 					</span>
@@ -255,7 +255,7 @@
 
 			{else}
 
-				<input id="{ opts.name }" type="text" data-hex="true" size="{ opts.size }" class="datepicker" name="{ opts.name }" value="{ opts.value }" />
+				<input id="{ opts.name }" type="text" data-hex="true" size="{ opts.size }" class="datepicker" name="{ opts.name }" value="{ opts.value }" required="{ opts.requiredInput == 'true' }" />
 
 			{/if}
 
