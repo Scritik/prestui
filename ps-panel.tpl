@@ -39,6 +39,17 @@
 					margin-right: 5px;
 				}
 
+				a.btn i {
+					display: block;
+					width: 30px;
+					height: 30px;
+					margin: 0 auto;
+					font-size: 28px;
+					background: transparent;
+					background-size: 26px;
+					background-position: center
+				}
+
 			{else}
 
 				.panel-footer {
@@ -98,7 +109,7 @@
 		{if $ps_version >= 1.6}
 
 			<button type="submit" class="btn btn-default pull-{ opts.direction }" name="{ opts.name }">
-				<i class="process-icon-{ opts.icon }"></i> { opts.title }
+				<i class="{ opts.icon }"></i> { opts.title }
 			</button>
 
 		{else}
@@ -118,7 +129,7 @@
 		{if $ps_version >= 1.6}
 
 			<a class="btn btn-default pull-{ opts.direction }" href="{ opts.href }">
-				<i class="process-icon-{ opts.icon }"></i> { opts.title }
+				<i class="{ opts.icon }"></i> { opts.title }
 			</a>
 
 		{else}
