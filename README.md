@@ -25,7 +25,7 @@ return $html.$this->display(__FILE__, 'views/templates/admin/prestui/ps-tags.tpl
 If you only need a few tags, you can assign a variable with only the groups you need, before rendering ps-tags:
 
 ``` php
-$this->smarty->assign('ps_version', array('tabs', 'panel'));
+$this->smarty->assign('tags', array('tabs', 'panel'));
 ```
 
 ## Available tags
