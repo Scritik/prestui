@@ -127,10 +127,3 @@
 
 	</ps-alert-hint>
 </script>
-
-<script type="text/javascript">
-	tags.push('ps-alert-success',
-						'ps-alert-error',
-						'ps-alert-hint',
-						'ps-alert-warn');
-</script>

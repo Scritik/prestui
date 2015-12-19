@@ -27,7 +27,6 @@
 {/if}
 
 <script type="text/javascript">
-	var tags = ['raw'];
 	var color_picker = false;
 </script>
 
@@ -46,5 +45,5 @@
 </script>
 
 <script type="text/javascript">
-	riot.mount(tags.join(', '));
+	riot.mount('*');
 </script>

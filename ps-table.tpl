@@ -218,7 +218,3 @@
 	</ps-table>
 
 </script>
-
-<script type="text/javascript">
-	tags.push('ps-table');
-</script>

@@ -277,16 +277,3 @@
 		}
 	});
 </script>
-
-<script type="text/javascript">
-	tags.push('ps-input-text',
-						'ps-form-group',
-						'ps-switch',
-						'ps-radios',
-						'ps-radio',
-						'ps-checkbox',
-						'ps-checkboxes',
-						'ps-input-file',
-						'ps-color-picker',
-						'ps-date-picker');
-</script>

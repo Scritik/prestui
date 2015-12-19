@@ -178,9 +178,3 @@
 
 	</ps-panel>
 </script>
-
-
-
-<script type="text/javascript">
-	tags.push('ps-panel', 'ps-panel-footer', 'ps-panel-footer-link', 'ps-panel-footer-submit');
-</script>

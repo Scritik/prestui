@@ -150,7 +150,3 @@
   </ps-tabs>
 
 </script>
-
-<script type="text/javascript">
-	tags.push('ps-tab', 'ps-tabs');
-</script>
