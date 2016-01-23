@@ -33,11 +33,7 @@ You can find more information about RiotJS on [GitHub](https://github.com/muut/r
 To use PrestUI, you need to include the files into your module. Download PrestUI and move the folder in `/views/templates/admin/`
 
 You also need to include RiotJS since all the components are based on it.
-You can [download a copy](https://muut.com/riotjs/download.html) and include it into the module, or you can use a CDN like this:
-
-``` php
-$this->context->controller->addJS('https://cdn.jsdelivr.net/g/riot@2.0(riot.min.js+compiler.min.js)');
-```
+You can [download a copy](https://muut.com/riotjs/download/) and include it into the module, or you can [use a CDN](http://riotjs.com/download/).
 
 You can now include PrestUI like this:
 
