@@ -54,29 +54,145 @@
 </script>
 
 <script type="riot/tag">
+	<ps-input-text-core>
+
+			{if $ps_version >= 1.6}
+
+					<div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }{/literal}">
+						<span class="input-group-addon" if={ opts.prefix }>{ opts.prefix}</span>
+						<input type="text" name="{ input_name }" value="{ opts.value }" class="input { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }">
+						<span class="input-group-addon" if={ opts.suffix }>{ opts.suffix}</span>
+					</div>
+
+			{else}
+
+				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ input_name }" value="{ opts.value }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
+
+			{/if}
+
+		// Get ps-input-text-lang name if needed
+		if (this.opts.name)
+			this.input_name = this.opts.name
+		else
+			this.input_name = this.parent.opts.name
+
+		this.opts = this.parent.opts
+
+	</ps-input-text-core>
+</script>
+
+<script type="riot/tag">
 	<ps-input-text>
 
 		<ps-form-group>
 
-			{if $ps_version >= 1.6}
-
-				<div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }{/literal}">
-					<span class="input-group-addon" if={ opts.prefix }>{ opts.prefix}</span>
-					<input type="text" name="{ opts.name }" value="{ opts.value }" class="input { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }" >
-					<span class="input-group-addon" if={ opts.suffix }>{ opts.suffix}</span>
-				</div>
-
-			{else}
-
-				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
-
-			{/if}
+			<ps-input-text-core></ps-input-text-core>
 
 		</ps-form-group>
 
 		this.tags['ps-form-group'].opts = opts
 
 	</ps-input-text>
+</script>
+
+<script type="riot/tag">
+	<ps-input-text-lang>
+
+		<ps-form-group>
+
+			{if $ps_version >= 1.6}
+
+				<yield/>
+
+			{else}
+
+				<div class="translatable">
+
+					<yield/>
+
+					<div class="displayed_flag"><img class="language_current pointer" src="../img/l/{ this.parent.opts.activeLang }.jpg" onclick="toggleLanguageFlags(this);"></div>
+					<div class="language_flags" style="display: none;">
+						<img class="pointer" src="../img/l/{ lang.idLang }.jpg" alt="{ lang.langName }" each={ lang in this.parent.langs } onclick="changeFormLanguage({ lang.idLang }, '{ lang.isoLang }', 0)">
+					</div>
+				</div>
+
+			{/if}
+
+		</ps-form-group>
+
+		{if $ps_version == 1.5}
+
+			<style scoped>
+
+				.language_flags .pointer {
+					margin: 2px;
+				}
+
+				.translatable div[class^=lang_] {
+					float: left;
+				}
+
+			</style>
+
+			this.langs = []
+
+			this.on('mount', function() {
+				that = this
+				that.tags['ps-form-group'].tags['ps-input-text-lang-value'].forEach(function(elem) {
+					that.langs.push(elem.opts)
+					$(elem.root).addClass('lang_'+elem.opts.idLang)
+					if (that.opts.activeLang != elem.opts.idLang)
+						$(elem.root).hide()
+				})
+				that.update()
+			})
+
+		{/if}
+
+		this.tags['ps-form-group'].opts = opts
+
+	</ps-input-text-lang>
+</script>
+
+<script type="riot/tag">
+	<ps-input-text-lang-value>
+
+		{if $ps_version >= 1.6}
+
+			<div class="translatable-field row lang-{ this.opts.idLang }" style="display: { this.parent.opts.activeLang == this.opts.idLang ? 'block' : 'none' };">
+				<div class="col-lg-{ this.parent.opts.colLg }">
+					<ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }"></ps-input-text-core>
+				</div>
+				<div class="col-lg-2">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+						{ this.opts.isoLang }
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li each={ dropdown_lang in this.langs }>
+							<a href="javascript:hideOtherLanguage({ dropdown_lang.idLang });">{ dropdown_lang.langName }</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			this.langs = []
+
+			this.on('mount', function() {
+				that = this
+				that.parent.tags['ps-input-text-lang-value'].forEach(function(elem) {
+					that.langs.push(elem.opts)
+				})
+				that.update()
+			})
+
+		{else}
+
+			<ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }"></ps-input-text-core>
+
+		{/if}
+
+	</ps-input-text-lang-value>
 </script>
 
 <script type="riot/tag">
