@@ -23,108 +23,49 @@
 *}
 
 <script type="riot/tag">
-	<ps-tab-content>
 
-		<div class="tab-content panel">
+	<ps-tab>
+
+		<ps-panel>
 			<yield/>
-		</div>
+		</ps-panel>
 
 		{if $ps_version >= 1.6}
 
 			<style scoped>
-				.tab-content {
+
+				.panel {
 				  border-top-left-radius: 0 !important;
 					border-top-right-radius: 0 !important;
 				}
+
 			</style>
 
 		{else}
 
 			<style scoped>
-				.tab-content {
-					background-color: #ebedf4;
-					border: 1px solid #ccced7;
-					min-height: 350px;
-					padding: 20px;
-					margin-left: 140px;
-					margin-bottom: 20px;
-				}
 
-				.tab-content .tab-pane {
+				:scope {
 					display: none;
 				}
 
-				.tab-content .tab-pane.active {
+				:scope.active {
 					display: block;
 				}
+
 			</style>
 
 		{/if}
 
-	</ps-tab-content>
-</script>
+		$(this.root).addClass('tab-pane')
+		if (this.parent && this.parent.opts.position == 'left')
+		{
+			this.tags['ps-panel'].opts.header = opts.title
+			this.tags['ps-panel'].opts.icon = opts.icon
+			this.tags['ps-panel'].opts.img = opts.img
+		}
 
-<script type="riot/tag">
-
-	<ps-tab-nav-item>
-
-		<a href="#{ opts.target }" data-toggle="tab" onclick={ changeTab } ><yield/></a>
-
-		{if $ps_version == 1.5}
-
-			<style>
-				ps-tab-nav a {
-					display: block;
-					font-weight: normal;
-					color: #666;
-					padding: 7px 10px;
-					border-top: 1px solid #CCCED7;
-					border-right: 1px solid #CCCED7;
-				}
-			</style>
-
-			changeTab(event) {
-				$(event.target).parents('ul.nav-tabs').find('li').removeClass('active')
-				$(event.target).parent().addClass('active')
-				$(event.target).parents('ps-tabs').find('.tab-content .tab-pane.active').removeClass('active')
-				$(event.target).parents('ps-tabs').find('.tab-content '+$(event.target).attr('href')).addClass('active')
-				return false
-			}
-
-		{/if}
-
-	</ps-tab-nav-item>
-
-</script>
-
-<script type="riot/tag">
-
-	<ps-tab-nav>
-
-		<ul class="nav nav-tabs">
-			<yield/>
-		</ul>
-
-		{if $ps_version == 1.5}
-
-			<style scoped>
-				.active a {
-					background-color: #ebedf4;
-					font-weight: bold;
-					color: #000;
-					border-right: none;
-				}
-
-				ul.nav-tabs {
-					margin: 0;
-					padding: 0;
-					list-style: none;
-				}
-			</style>
-
-		{/if}
-
-	</ps-tab-nav>
+	</ps-tab>
 
 </script>
 
@@ -132,19 +73,162 @@
 
   <ps-tabs>
 
-		<yield/>
+		{if $ps_version >= 1.6}
 
-		{if $ps_version == 1.5}
+			<div class="row">
+
+				<div class="{ col-md-2: this.opts.position == 'left', col-md-12: this.opts.position != 'left' }">
+					<ul class="{ nav: true, list-group: this.opts.position == 'left', nav-tabs: this.opts.position != 'left' }">
+						<li class="{ list-group-item: this.parent.opts.position == 'left', active: tab.opts.active }" each={ tab in this.tags['ps-tab'] }>
+							<a href="#{ tab.opts.id }" data-toggle="tab"><i class="{ tab.opts.icon }" if={ tab.opts.icon }></i> { tab.opts.title }</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="{ tab-content: true, col-md-10: this.opts.position == 'left', col-md-12: this.opts.position != 'left' }">
+					<yield/>
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+
+		{else}
+
+			<div class="tabs-container">
+
+				<ul class="{ tabs-navigation: true, tabs-navigation-left: this.opts.position == 'left', tabs-navigation-top: this.opts.position != 'left' }">
+						<li each={ tab in this.tags['ps-tab'] } class={ active: tab.opts.active }>
+							<a href="#{ tab.opts.id }" onclick={ changeTab }><img src="{ tab.opts.img }" if={ tab.opts.img } /> { tab.opts.title }</a>
+						</li>
+				</ul>
+
+				<div class="{ tabs-content: true, tabs-content-left: this.opts.position == 'left', tabs-content-top: this.opts.position != 'left' }">
+					<yield/>
+				</div>
+
+				<div class="clearfix"></div>
+
+			</div>
+
+		{/if}
+
+		this.on('mount', function() {
+			that = this
+			that.tags['ps-tab'].forEach(function(elem) {
+				if (elem.opts.active)
+					$(elem.root).addClass('active')
+			})
+		})
+
+		changeTab(event) {
+			$(event.target).parents('ul.tabs-navigation').find('li.active').removeClass('active')
+			$(event.target).parents('li').addClass('active')
+			$(event.target).parents('.tabs-container').find('ps-tab.active').removeClass('active')
+			var target = $(event.target).parents('li').find('a').attr('href')
+			$(event.target).parents('.tabs-container').find('ps-tab'+target).addClass('active')
+			return false
+		}
+
+		{if $ps_version >= 1.6}
+
 			<style scoped>
-				ps-tab-nav {
-					background-color: #fafafa;
-					border: 1px solid #ccced7;
-					border-right: none;
-					border-top: none;
-					float: left;
-					width: 140px;
+
+				li.list-group-item {
+					padding: 0 !important;
 				}
+
+				li.list-group-item a {
+					color: #555;
+				}
+
+				li.list-group-item:hover {
+					background-color: #f5f5f5;
+				}
+
+				li.list-group-item.active a {
+					color: white;
+				}
+
 			</style>
+
+		{else}
+
+			<style scoped>
+
+				.tabs-container {
+					margin: 20px 0;
+				}
+
+				.tabs-content-left {
+					margin-left: 200px;
+				}
+
+				.tabs-navigation li {
+					background: #fafafa;
+				}
+
+				.tabs-navigation li:hover {
+					background: #F1F3F9;
+				}
+
+				.tabs-navigation li a {
+					color: #666;
+					cursor: pointer;
+					padding: 10px 15px;
+					display: block;
+					line-height: 18px;
+				}
+
+				.tabs-navigation li a img {
+					margin-top: -4px;
+					max-width: 16px;
+					max-height: 16px;
+				}
+
+				.tabs-navigation li.active {
+					background: #EBEDF4;
+				}
+
+				.tabs-navigation li.active a {
+					color: black;
+					font-weight: bold;
+				}
+
+				.tabs-navigation.tabs-navigation-top {
+					margin-bottom: -1px;
+				}
+
+				.tabs-navigation.tabs-navigation-top li {
+					border: 1px solid #CCCED7;
+					border-right: none;
+					display: inline-block;
+				}
+
+				.tabs-navigation.tabs-navigation-top li.active {
+					border-bottom: 1px solid #EBEDF4;
+				}
+
+				.tabs-navigation.tabs-navigation-top li:last-child {
+					border-right: 1px solid #CCCED7;
+				}
+
+				.tabs-navigation.tabs-navigation-left {
+					float: left;
+					border: 1px solid #CCCED7;
+					width: 180px;
+					margin-top: 11px;
+				}
+
+				.tabs-navigation.tabs-navigation-left li {
+					border-bottom: 1px solid #CCCED7;
+				}
+
+				.tabs-navigation.tabs-navigation-left li:last-child {
+					border-bottom: none;
+				}
+
+			</style>
+
 		{/if}
 
   </ps-tabs>

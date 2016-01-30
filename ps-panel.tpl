@@ -168,7 +168,7 @@
 		{else}
 
 			<fieldset>
-				<legend><img src="{ opts.img }">{ opts.header }</legend>
+				<legend if={ opts.header }><img src="{ opts.img }" if={ opts.img }>{ opts.header }</legend>
 
 				<yield/>
 
