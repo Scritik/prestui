@@ -1,14 +1,14 @@
 ## PrestUI: RiotJS-based UI library for PrestaShop
 
-PrestUI is an UI library to support the developement of PrestaShop modules. It allows you to write one concise html, compatible with all recent versions of PrestaShop (1.5 and 1.6). PrestUI will automatically adapt depending on which PrestaShop version the module is used on.
+PrestUI is an UI library to help you develop interfaces for your PrestaShop modules. It allows you to write one concise html, compatible with all recent versions of PrestaShop (1.5 and 1.6). PrestUI will automatically adapt depending on which PrestaShop version the module is used on.
 
-It allows you to write:
+Eg, you can write:
 
 ```html
 <ps-switch name="switch" label="Switch" yes="Yes" no="No" active="true"></ps-switch>
 ```
 
-And you will get something like this, a valid HTML for PrestaShop:
+And you will automatically get something like this, a valid HTML for PrestaShop (1.6 here):
 
 ```html
 <div class="form-group">
@@ -33,11 +33,13 @@ You can find more information about RiotJS on [GitHub](https://github.com/muut/r
 To use PrestUI, you need to include the files into your module. Download PrestUI and move the folder in `/views/templates/admin/`
 
 You also need to include RiotJS since all the components are based on it.
-You can [download a copy](https://muut.com/riotjs/download/) and include it into the module, or you can [use a CDN](http://riotjs.com/download/).
+You can [download a copy](http://riotjs.com/download/) and include it into the module, or you can [use a CDN](http://riotjs.com/download/).
 
 You can now include PrestUI like this:
 
 ``` php
+$html = $this->display(__FILE__, 'path/to/your/file.tpl')
+
 return $html.$this->display(__FILE__, 'views/templates/admin/prestui/ps-tags.tpl');
 ```
 
@@ -51,25 +53,15 @@ $this->smarty->assign('tags', array('tabs', 'panel'));
 
 All available tags and their attributes are listed on the [wiki](../../wiki)
 
-## Roadmap
-
-- 0.1 (Released)
-	- Tags loader
-	- Basic inputs
-	- Panel
-	- Tabs
-- 0.2 (Released)
-	- PS 1.4 compatibility
-	- More inputs
-	- alerts
-- 0.3
-	- Lists
-	- Required inputs
-	- Remove 1.4 compatibility
-
 ## Contribution
 
-Found a bug or have an idea? Use GitHub's tickets system. You can also make a pull request.
+Found a bug or have an idea? Use GitHub's tickets system. 
+If you want to help and add a feature or fix a bug, you need to make a pull request:
+
+- Create a fork of this repo
+- Create a new branch like "feature-xxxxxx"
+- Commit your changes on this branch
+- Create your pull request on GitHub
 
 ## License
 
