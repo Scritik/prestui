@@ -178,7 +178,6 @@
 
 				fieldset {
 					margin-bottom: 20px;
-					max-width: 1100px;
 					margin-left: auto;
 					margin-right: auto;
 				}
