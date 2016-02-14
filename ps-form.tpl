@@ -22,7 +22,6 @@
 *	THE SOFTWARE.
 *}
 
-
 <script type="riot/tag">
 	<ps-form-group>
 
@@ -180,19 +179,167 @@
 
 			this.on('mount', function() {
 				that = this
-				that.parent.tags['ps-input-text-lang-value'].forEach(function(elem) {
-					that.langs.push(elem.opts)
-				})
-				that.update()
+				if (that.parent)
+				{
+					that.parent.tags['ps-input-text-lang-value'].forEach(function(elem) {
+						that.langs.push(elem.opts)
+					})
+					that.update()
+				}
 			})
 
 		{else}
 
-			<ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }"></ps-input-text-core>
+			<ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }" size="{ this.parent.opts.size }"></ps-input-text-core>
 
 		{/if}
 
 	</ps-input-text-lang-value>
+</script>
+
+<script type="riot/tag">
+
+	<ps-textarea-core>
+
+		<textarea name="{ opts.name }" class="{ rte: opts.richEditor == 'true', autoload_rte: opts.richEditor == 'true'}" rows="{ opts.rows }" {if $ps_version < 1.6}cols="{ opts.cols }"{/if}><yield/></textarea>
+
+	</ps-textarea-core>
+
+</script>
+
+<script type="riot/tag">
+
+	<ps-textarea>
+
+		<ps-form-group>
+
+			<ps-textarea-core rich-editor="{ opts.richEditor }" name="{ opts.name }" rows="{ opts.rows }" cols="{ opts.cols }"><yield/></ps-textarea-core>
+
+		</ps-form-group>
+
+		this.tags['ps-form-group'].opts = opts
+
+	</ps-textarea>
+
+</script>
+
+<script type="riot/tag">
+	<ps-textarea-lang>
+
+		<ps-form-group>
+
+			{if $ps_version >= 1.6}
+
+				<yield/>
+
+			{else}
+
+				<div class="translatable">
+
+					<yield/>
+
+					<div class="displayed_flag"><img class="language_current pointer" src="../img/l/{ this.parent.opts.activeLang }.jpg" onclick="toggleLanguageFlags(this);"></div>
+					<div class="language_flags" style="display: none;">
+						<img class="pointer" src="../img/l/{ lang.idLang }.jpg" alt="{ lang.langName }" each={ lang in this.parent.langs } onclick="changeFormLanguage({ lang.idLang }, '{ lang.isoLang }', 0)">
+					</div>
+				</div>
+
+			{/if}
+
+		</ps-form-group>
+
+		{if $ps_version == 1.5}
+
+			<style scoped>
+
+				.language_flags .pointer {
+					margin: 2px;
+				}
+
+				.translatable div[class^=lang_] {
+					float: left;
+				}
+
+			</style>
+
+			this.langs = []
+
+			this.on('mount', function() {
+				that = this
+				that.tags['ps-form-group'].tags['ps-textarea-lang-value'].forEach(function(elem) {
+					that.langs.push(elem.opts)
+					$(elem.root).addClass('lang_'+elem.opts.idLang)
+					if (that.opts.activeLang != elem.opts.idLang)
+						$(elem.root).hide()
+				})
+				that.update()
+			})
+
+		{/if}
+
+		this.tags['ps-form-group'].opts = opts
+
+	</ps-textarea-lang>
+</script>
+
+<script type="riot/tag">
+	<ps-textarea-lang-value>
+
+		{if $ps_version >= 1.6}
+
+			<div class="translatable-field row lang-{ this.opts.idLang }" style="display: { this.parent.opts.activeLang == this.opts.idLang ? 'block' : 'none' };">
+				<div class="col-lg-{ this.parent.opts.colLg }">
+					<ps-textarea-core name="{ this.parent.opts.name }_{ this.opts.idLang }" rows="{ this.parent.parent.opts.rows }" cols="{ this.parent.parent.opts.cols }" rich-editor="{ this.parent.opts.richEditor }"><yield/></ps-textarea-core>
+				</div>
+				<div class="col-lg-2">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+						{ this.opts.isoLang }
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li each={ dropdown_lang in this.langs }>
+							<a href="javascript:hideOtherLanguage({ dropdown_lang.idLang });">{ dropdown_lang.langName }</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			this.langs = []
+
+			this.on('mount', function() {
+				that = this
+				if (that.parent)
+				{
+					that.parent.tags['ps-textarea-lang-value'].forEach(function(elem) {
+						that.langs.push(elem.opts)
+					})
+					that.update()
+				}
+			})
+
+		{else}
+
+			<ps-textarea-core name="{ this.parent.opts.name }_{ this.opts.idLang }" rows="{ this.parent.parent.opts.rows }" cols="{ this.parent.parent.opts.cols }" rich-editor="{ this.parent.opts.richEditor }"><yield/></ps-textarea-core>
+
+		{/if}
+
+	</ps-textarea-lang-value>
+</script>
+
+{if $ps_version < 1.6}
+	<script type="text/javascript" src="{$smarty.const.__PS_BASE_URI__|addslashes}/js/tinymce.inc.js"></script>
+{/if}
+
+<script type="text/javascript">
+	var iso = iso_user;
+	var pathCSS = '{$smarty.const._THEME_CSS_DIR_|addslashes}';
+	var ad = '{$smarty.const.__PS_BASE_URI__|addslashes}{basename($smarty.const._PS_ADMIN_DIR_)|addslashes}';
+
+	$( document ).ready(function() {
+		if ($("ps-textarea .autoload_rte").length > 0) {
+			tinySetup({ editor_selector: "autoload_rte" })
+		}
+	});
 </script>
 
 <script type="riot/tag">
