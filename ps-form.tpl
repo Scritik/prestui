@@ -463,19 +463,14 @@
 
 		</ps-form-group>
 
-		if (color_picker === false) {
-			{if $ps_version == '1.4'}
-				$.getScript('../js/jquery/jquery-colorpicker.js');
-			{else}
-				$.getScript('../js/jquery/plugins/jquery.colorpicker.js');
-			{/if}
-			color_picker = true;
-		}
-
 		this.tags['ps-form-group'].opts = opts
 
 	</ps-color-picker>
 </script>
+
+{if $ps_version < 1.6}
+	<script type="text/javascript" src="{$smarty.const.__PS_BASE_URI__|addslashes}/js/jquery/plugins/jquery.colorpicker.js"></script>
+{/if}
 
 <script type="riot/tag">
 	<ps-password>
