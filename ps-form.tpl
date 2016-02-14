@@ -327,13 +327,13 @@
 </script>
 
 {if $ps_version < 1.6}
-	<script type="text/javascript" src="{$smarty.const.__PS_BASE_URI__|addslashes}/js/tinymce.inc.js"></script>
+	<script type="text/javascript" src="{$smarty.const.__PS_BASE_URI__|escape:'quotes':'UTF-8'}/js/tinymce.inc.js"></script>
 {/if}
 
 <script type="text/javascript">
 	var iso = iso_user;
-	var pathCSS = '{$smarty.const._THEME_CSS_DIR_|addslashes}';
-	var ad = '{$smarty.const.__PS_BASE_URI__|addslashes}{basename($smarty.const._PS_ADMIN_DIR_)|addslashes}';
+	var pathCSS = "{$smarty.const._THEME_CSS_DIR_|escape:'quotes':'UTF-8'}";
+	var ad = "{$smarty.const.__PS_BASE_URI__|escape:'htmlall':'UTF-8'}{basename($smarty.const._PS_ADMIN_DIR_)|escape:'quotes':'UTF-8'}";
 
 	$( document ).ready(function() {
 		if ($("ps-textarea .autoload_rte").length > 0) {
@@ -469,7 +469,7 @@
 </script>
 
 {if $ps_version < 1.6}
-	<script type="text/javascript" src="{$smarty.const.__PS_BASE_URI__|addslashes}/js/jquery/plugins/jquery.colorpicker.js"></script>
+	<script type="text/javascript" src="{$smarty.const.__PS_BASE_URI__|escape:'quotes':'UTF-8'}/js/jquery/plugins/jquery.colorpicker.js"></script>
 {/if}
 
 <script type="riot/tag">

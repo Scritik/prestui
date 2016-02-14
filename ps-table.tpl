@@ -206,7 +206,7 @@
 			this.columns_keys.push(this.columns[i].key)
 		}
 
-		this.base_action_url = currentIndex + '&token={Tools::getAdminTokenLite(Context::getContext()->controller->controller_name)}&' + jQuery.param(content.url_params)
+		this.base_action_url = currentIndex + "&token={Tools::getAdminTokenLite(Context::getContext()->controller->controller_name)|escape:'htmlall':'UTF-8'}&" + jQuery.param(content.url_params)
 
 		this.primary_action = content.rows_actions.slice(0, 1)[0]
 		this.secondary_actions = content.rows_actions.slice(1)
