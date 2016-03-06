@@ -60,7 +60,7 @@ If you want to help and add a feature or fix a bug, you need to make a pull requ
 
 - Create a fork of this repo
 - Create a new branch like "feature-xxxxxx"
-- Commit your changes on this branch
+- Commit your changes on the dev branch
 - Create your pull request on GitHub
 
 ## License
