@@ -72,10 +72,10 @@
 												<a href="{ this.base_action_url }&action={ this.primary_action.action }&{ this.identifier }={ row[this.identifier] }" title="{ this.primary_action.title }" class="edit btn btn-default">
 													<i class="icon-{ this.primary_action.icon }"></i> { this.primary_action.title }
 												</a>
-												<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+												<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" if={ this.secondary_actions[0] }>
 													<i class="icon-caret-down"></i>&nbsp;
 												</button>
-												<ul class="dropdown-menu" if={ this.secondary_actions }>
+												<ul class="dropdown-menu" if={ this.secondary_actions[0] }>
 													<li each={ elem, index in this.secondary_actions }>
 														<a href="{ this.base_action_url }&action={ elem.action }&{ this.identifier }={ row[this.identifier] }" title="{ elem.title }">
 															<i class="icon-{ elem.icon }"></i> { elem.title }
