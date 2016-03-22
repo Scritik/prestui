@@ -87,6 +87,15 @@
 									</td>
 								</tr>
 
+								<tr if={ this.empty_table }>
+									<td class="list-empty" colspan="{ this.columns.length + 1 }">
+										<div class="list-empty-msg">
+											<i class="icon-warning-sign list-empty-icon"></i>
+											{ this.opts.noItemsText }
+										</div>
+									</td>
+								</tr>
+
 							</tbody>
 
 						</table>
@@ -149,12 +158,11 @@
 												<a each={ elem, index in this.secondary_actions } href="{ this.base_action_url }&action={ elem.action }&{ this.identifier }={ row[this.identifier] }" title="{ elem.title }">
 													<img src="{ elem.img }" alt="{ elem.title }">
 												</a>
-
 											</td>
 
 										</tr>
 
-										<tr if={ this.rows.length == 0 }>
+										<tr if={ this.empty_table }>
 											<td class="center" colspan="{ this.columns.length + 1 }">{ this.opts.noItemsText }</td>
 										</tr>
 
@@ -197,6 +205,7 @@
 
 		this.columns = content.columns
 		this.rows = content.rows
+		this.empty_table = this.rows.length == 0
 
 		this.columns_classes = []
 		this.columns_keys = []
