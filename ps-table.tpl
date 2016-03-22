@@ -64,7 +64,8 @@
 
 								<tr class="odd" each={ row, i in this.rows }>
 									<td each={ value, key in this.columns_keys } class="{ this.columns_classes[key] }">
-										{ row[value] }
+										<i class="icon-{ row[value] == 1 ? 'check' : 'remove' } status" if={ this.columns[key].bool }></i>
+										<span if={ !this.columns[key].bool }>{ row[value] }</span>
 									</td>
 									<td if={ this.primary_action }>
 										<div class="btn-group-action">
@@ -146,8 +147,10 @@
 									<tbody>
 
 										<tr class="row_hover" each={ row, i in this.rows }>
+
 											<td each={ value, key in this.columns_keys } class="{ this.columns_classes[key] }">
-												{ row[value] }
+												<img src="../img/admin/{ row[value] == 1 ? 'enabled' : 'disabled' }.gif" if={ this.columns[key].bool }>
+												<span if={ !this.columns[key].bool }>{ row[value] }</span>
 											</td>
 
 											<td class="right" style="white-space: nowrap;" if={ this.primary_action }>
@@ -179,7 +182,17 @@
 
 		<style scoped>
 
-			{if $ps_version == '1.5'}
+			{if $ps_version >= 1.6}
+
+				i.status.icon-check {
+					color: #72C279;
+				}
+
+				i.status.icon-remove {
+					color: #E08F95;
+				}
+
+			{else}
 
 				.help-context-AdminModules {
 					display: none !important;
