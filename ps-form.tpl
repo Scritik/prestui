@@ -426,14 +426,14 @@
 
 			<div class="checkbox">
 				<label for="{ opts.name }_{ opts.value }">
-					<input type="checkbox" name="{ opts.name }" id="{ opts.name }_{ opts.value }" checked={ opts.checked == 'true' }>
+					<input type="checkbox" name="{ opts.name }" checked={ opts.checked == 'true' } value="{ opts.value }">
 					<yield/>
 				</label>
 			</div>
 
 		{else}
 
-			<input type="checkbox" name="{ opts.name }" id="{ opts.name }_{ opts.value }" value="{ opts.value }" checked={ opts.checked == 'true' }>
+			<input type="checkbox" name="{ opts.name }" value="{ opts.value }" checked={ opts.checked == 'true' }>
 			<label class="t" for="{ opts.name }_{ opts.value }"><yield/></label>
 			<br>
 
