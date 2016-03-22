@@ -26,9 +26,13 @@
 
 	<ps-tab>
 
-		<ps-panel>
+		<ps-panel if={ opts.panel != 'false' }>
 			<yield/>
 		</ps-panel>
+
+		<div if={ opts.panel == 'false' }>
+			<yield />
+		</div>
 
 		{if $ps_version >= 1.6}
 
@@ -58,7 +62,7 @@
 		{/if}
 
 		$(this.root).addClass('tab-pane')
-		if (this.parent && this.parent.opts.position == 'left')
+		if (this.parent && this.parent.opts.position == 'left' && this.opts.panel != 'false')
 		{
 			this.tags['ps-panel'].opts.header = opts.title
 			this.tags['ps-panel'].opts.icon = opts.icon
@@ -79,7 +83,7 @@
 
 				<div class="{ col-md-2: this.opts.position == 'left', col-md-12: this.opts.position != 'left' }">
 					<ul class="{ nav: true, list-group: this.opts.position == 'left', nav-tabs: this.opts.position != 'left' }">
-						<li class="{ list-group-item: this.parent.opts.position == 'left', active: tab.opts.active }" each={ tab in this.tags['ps-tab'] }>
+						<li class="{ list-group-item: this.parent.opts.position == 'left', active: tab.opts.active == 'true' }" each={ tab in this.tags['ps-tab'] }>
 							<a href="#{ tab.opts.id }" data-toggle="tab"><i class="{ tab.opts.icon }" if={ tab.opts.icon }></i> { tab.opts.title }</a>
 						</li>
 					</ul>
@@ -97,7 +101,7 @@
 			<div class="tabs-container">
 
 				<ul class="{ tabs-navigation: true, tabs-navigation-left: this.opts.position == 'left', tabs-navigation-top: this.opts.position != 'left' }">
-						<li each={ tab in this.tags['ps-tab'] } class={ active: tab.opts.active }>
+						<li each={ tab in this.tags['ps-tab'] } class={ active: tab.opts.active == 'true' }>
 							<a href="#{ tab.opts.id }" onclick={ changeTab }><img src="{ tab.opts.img }" if={ tab.opts.img } /> { tab.opts.title }</a>
 						</li>
 				</ul>
@@ -115,7 +119,7 @@
 		this.on('mount', function() {
 			that = this
 			that.tags['ps-tab'].forEach(function(elem) {
-				if (elem.opts.active)
+				if (elem.opts.active == 'true')
 					$(elem.root).addClass('active')
 			})
 		})
