@@ -530,7 +530,7 @@
 			$("ps-date-picker .datepicker").datepicker({
 					prevText: '',
 					nextText: '',
-					altFormat: 'yy-mm-dd'
+					dateFormat: 'yy-mm-dd'
 			});
 		}
 	});
