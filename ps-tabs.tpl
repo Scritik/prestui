@@ -125,11 +125,15 @@
 		})
 
 		changeTab(event) {
-			$(event.target).parents('ul.tabs-navigation').find('li.active').removeClass('active')
-			$(event.target).parents('li').addClass('active')
-			$(event.target).parents('.tabs-container').find('ps-tab.active').removeClass('active')
-			var target = $(event.target).parents('li').find('a').attr('href')
-			$(event.target).parents('.tabs-container').find('ps-tab'+target).addClass('active')
+			// Change active tab
+			$(this.root).find('> .tabs-container > ul > li.active').removeClass('active')
+			$(event.target).closest('li').addClass('active')
+
+			// Change active tab content
+			$(this.root).find('> .tabs-container > .tabs-content > .active').removeClass('active')
+			id_target = $(event.target).closest('a').attr('href')
+			$(this.root).find('> .tabs-container > .tabs-content > ' + id_target).addClass('active')
+
 			return false
 		}
 
