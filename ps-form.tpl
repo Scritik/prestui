@@ -447,7 +447,7 @@
 		<ps-form-group>
 
 			<div class="{if $ps_version == '1.6'}input-group{/if} { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
-				<input type="color" value="{ opts.color || '#000000' }" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
+				<input type="color" value="{ opts.value || '#000000' }" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
 			</div>
 
 			<style scoped>
