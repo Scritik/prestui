@@ -115,8 +115,19 @@
 		{else}
 
 			<button type="submit" class="btn pull-{ opts.direction }" name="{ opts.name }">
-				<img src="{ opts.img }" /> { opts.title }
+				<img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.title }
 			</button>
+
+			<style scoped>
+
+				button i.fa {
+					display: block;
+					font-size: 2.5em;
+					margin-bottom: 5px;
+					color: #585a69;
+				}
+
+			</style>
 
 		{/if}
 
@@ -135,13 +146,21 @@
 		{else}
 
 			<a class="btn pull-{ opts.direction }" href="{ opts.href }">
-				<img src="{ opts.img }" /> { opts.title }
+				<img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.title }
 			</a>
 
 			<style scoped>
 
 				a img {
 					margin-top: 15px;
+				}
+
+				a i.fa {
+					display: block;
+					font-size: 2.5em;
+					margin-bottom: 5px;
+					color: #585a69;
+					margin-top: 18px;
 				}
 
 			</style>
@@ -168,7 +187,9 @@
 		{else}
 
 			<fieldset>
-				<legend if={ opts.header }><img src="{ opts.img }" if={ opts.img }>{ opts.header }</legend>
+				<legend if={ opts.header }>
+					<img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.header }
+				</legend>
 
 				<yield/>
 

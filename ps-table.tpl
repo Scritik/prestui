@@ -114,7 +114,8 @@
 					<ul class="cc_button" if={ this.top_actions }>
 						<li each={ elem, index in this.top_actions }>
 							<a class="toolbar_btn" href="{ this.base_action_url }&action={ elem.action }" title="{ elem.title }">
-								<img src="{ elem.img }"/>
+								<img src="{ elem.img }" if={ !elem.fa } />
+								<i class="fa fa-{ elem.fa }"></i>
 								<div>{ elem.title }</div>
 							</a>
 						</li>
@@ -149,17 +150,20 @@
 										<tr class="row_hover" each={ row, i in this.rows }>
 
 											<td each={ value, key in this.columns_keys } class="{ this.columns_classes[key] }">
-												<img src="../img/admin/{ row[value] == 1 ? 'enabled' : 'disabled' }.gif" if={ this.columns[key].bool }>
+												<img src="../img/admin/{ row[value] == 1 ? 'enabled' : 'disabled' }.gif" if={ this.columns[key].bool && !this.columns[key].fa }>
+												<i class="fa fa-{ row[value] == 1 ? 'check fa-bool-true' : 'times fa-bool-false' }" if={ this.columns[key].bool && this.columns[key].fa }></i>
 												<span if={ !this.columns[key].bool }>{ row[value] }</span>
 											</td>
 
 											<td class="right" style="white-space: nowrap;" if={ this.primary_action }>
 												<a href="{ this.base_action_url }&action={ this.primary_action.action }&{ this.identifier }={ row[this.identifier] }" title="{ this.primary_action.title }">
-													<img src="{ this.primary_action.img }" alt="{ this.primary_action.title }">
+													<img src="{ this.primary_action.img }" alt="{ this.primary_action.title }" if={ !this.primary_action.fa }>
+													<i class="fa fa-{ this.primary_action.fa }" if={ this.primary_action.fa }></i>
 												</a>
 
 												<a each={ elem, index in this.secondary_actions } href="{ this.base_action_url }&action={ elem.action }&{ this.identifier }={ row[this.identifier] }" title="{ elem.title }">
-													<img src="{ elem.img }" alt="{ elem.title }">
+													<img src="{ elem.img }" alt="{ elem.title }" if={ !elem.fa }>
+													<i class="fa fa-{ elem.fa }" if={ elem.fa }></i>
 												</a>
 											</td>
 
@@ -208,6 +212,31 @@
 
 				> form {
 					margin-bottom: 15px;
+				}
+
+				.toolbarBox .toolbar_btn {
+					color: #585a69;
+					padding: 5px;
+					margin-top: -2px;
+					margin-right: 2px
+				}
+
+				.toolbarBox .toolbar_btn i {
+					font-size: 2.5em;
+				}
+
+				.fa {
+					font-size: 1.3em;
+					margin: 0 2px;
+					color: #585a69;
+				}
+
+				.fa-bool-true {
+					color: #83CA79;
+				}
+
+				.fa-bool-false {
+					color: #FF575A;
 				}
 
 			{/if}

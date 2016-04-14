@@ -67,6 +67,7 @@
 			this.tags['ps-panel'].opts.header = opts.title
 			this.tags['ps-panel'].opts.icon = opts.icon
 			this.tags['ps-panel'].opts.img = opts.img
+			this.tags['ps-panel'].opts.fa = opts.fa
 		}
 
 	</ps-tab>
@@ -102,7 +103,9 @@
 
 				<ul class="{ tabs-navigation: true, tabs-navigation-left: this.opts.position == 'left', tabs-navigation-top: this.opts.position != 'left' }">
 						<li each={ tab in this.tags['ps-tab'] } class={ active: tab.opts.active == 'true' }>
-							<a href="#{ tab.opts.id }" onclick={ changeTab }><img src="{ tab.opts.img }" if={ tab.opts.img } /> { tab.opts.title }</a>
+							<a href="#{ tab.opts.id }" onclick={ changeTab }>
+							<img src="{ tab.opts.img }" if={ !tab.opts.fa } /><i class="fa fa-{ tab.opts.fa }" if={ tab.opts.fa }></i> { tab.opts.title }
+							</a>
 						</li>
 				</ul>
 
