@@ -447,7 +447,7 @@
 		<ps-form-group>
 
 			<div class="{if $ps_version == '1.6'}input-group{/if} { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
-				<input type="color" value="{ opts.color || '#000000' }" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
+				<input type="color" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
 			</div>
 
 			<style scoped>
@@ -464,13 +464,14 @@
 		</ps-form-group>
 
 		this.tags['ps-form-group'].opts = opts
+		this.on('mount', function() {
+			// Fix for mColorPicker
+			$(this.root).find('input[type=color]').attr('value', opts.color)
+		})
+
 
 	</ps-color-picker>
 </script>
-
-{if $ps_version < 1.6}
-	<script type="text/javascript" src="{$smarty.const.__PS_BASE_URI__|escape:'quotes':'UTF-8'}/js/jquery/plugins/jquery.colorpicker.js"></script>
-{/if}
 
 <script type="riot/tag">
 	<ps-password>
