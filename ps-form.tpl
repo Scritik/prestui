@@ -57,26 +57,18 @@
 
 			{if $ps_version >= 1.6}
 
-					<div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }{/literal}">
+					<div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }{/literal}">
 						<span class="input-group-addon" if={ opts.prefix }>{ opts.prefix}</span>
-						<input type="text" name="{ input_name }" value="{ opts.value }" class="input { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : '' }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }">
+						<input type="text" name="{ opts.name }" value="{ opts.value }" class="input { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }">
 						<span class="input-group-addon" if={ opts.suffix }>{ opts.suffix}</span>
 					</div>
 
 			{else}
 
-				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ input_name }" value="{ opts.value }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
+				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
 
 			{/if}
-
-		// Get ps-input-text-lang name if needed
-		if (this.opts.name)
-			this.input_name = this.opts.name
-		else
-			this.input_name = this.parent.opts.name
-
-		this.opts = this.parent.opts
-
+			
 	</ps-input-text-core>
 </script>
 
@@ -85,7 +77,7 @@
 
 		<ps-form-group>
 
-			<ps-input-text-core></ps-input-text-core>
+			<ps-input-text-core name="{ opts.name }" fixed-width="{ opts.fixedWidth }" suffix="{ opts.suffix }" prefix="{ opts.prefix }" placeholder="{ opts.placeholder }" required-input="{ opts.requiredInput }" size="{ opts.size }" value="{ opts.value }"></ps-input-text-core>
 
 		</ps-form-group>
 
@@ -160,7 +152,7 @@
 
 			<div class="translatable-field row lang-{ this.opts.idLang }" style="display: { this.parent.opts.activeLang == this.opts.idLang ? 'block' : 'none' };">
 				<div class="col-lg-{ this.parent.opts.colLg }">
-					<ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }"></ps-input-text-core>
+					<ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }" placeholder="{ opts.placeholder }" required-input="{ this.parent.opts.requiredInput }" fixed-width="{ this.parent.opts.fixedWidth }" value="{ opts.value }"></ps-input-text-core>
 				</div>
 				<div class="col-lg-2">
 					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
@@ -190,7 +182,7 @@
 
 		{else}
 
-			<ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }" size="{ this.parent.opts.size }"></ps-input-text-core>
+			<ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }" placeholder="{ opts.placeholder }" required-input="{ this.parent.opts.requiredInput }" size="{ this.parent.opts.size }" value="{ opts.value }"></ps-input-text-core>
 
 		{/if}
 
@@ -446,7 +438,7 @@
 	<ps-color-picker>
 		<ps-form-group>
 
-			<div class="{if $ps_version == '1.6'}input-group{/if} { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
+			<div class="{if $ps_version == '1.6'}input-group{/if} { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : 'i-lg' }">
 				<input type="color" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
 			</div>
 
@@ -479,7 +471,7 @@
 
 			{if $ps_version >= 1.6}
 
-				<div class="input-group { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
+				<div class="input-group { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }">
 					<span class="input-group-addon">
 						<i class="icon-key"></i>
 					</span>
@@ -505,7 +497,7 @@
 
 			{if $ps_version >= 1.6}
 
-				<div class="input-group { opts['fixedWidth'] ? 'fixed-width-'+opts['fixedWidth'] : 'fixed-width-lg' }">
+				<div class="input-group { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }">
 					<input id="{ opts.name }" type="text" data-hex="true" class="datepicker" name="{ opts.name }" value="{ opts.value }" required="{ opts.requiredInput == 'true' }" />
 					<span class="input-group-addon">
 						<i class="icon-calendar-empty"></i>
