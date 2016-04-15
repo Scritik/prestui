@@ -475,12 +475,12 @@
 					<span class="input-group-addon">
 						<i class="icon-key"></i>
 					</span>
-					<input type="password" name="{ opts.name }" required="{ opts.requiredInput == 'true' }">
+					<input type="password" name="{ opts.name }" required="{ opts.requiredInput == 'true' }" value="{ opts.value }">
 				</div>
 
 			{else}
 
-				<input type="password" size="{ opts.size }" name="{ opts.name }" required="{ opts.requiredInput == 'true' }">
+				<input type="password" size="{ opts.size }" name="{ opts.name }" required="{ opts.requiredInput == 'true' }" value="{ opts.value }">
 
 			{/if}
 
