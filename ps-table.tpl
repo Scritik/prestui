@@ -56,7 +56,7 @@
 											{ elem.content }
 										</span>
 									</th>
-									<th class="fixed-width-md"></th>
+									<th class="fixed-width-md" if={ this.primary_action }></th>
 								</tr>
 							</thead>
 
@@ -73,10 +73,10 @@
 												<a href="{ this.base_action_url }&action={ this.primary_action.action }&{ this.identifier }={ row[this.identifier] }" title="{ this.primary_action.title }" class="edit btn btn-default">
 													<i class="icon-{ this.primary_action.icon }"></i> { this.primary_action.title }
 												</a>
-												<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+												<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" if={ this.secondary_actions.length }>
 													<i class="icon-caret-down"></i>&nbsp;
 												</button>
-												<ul class="dropdown-menu" if={ this.secondary_actions }>
+												<ul class="dropdown-menu" if={ this.secondary_actions.length }>
 													<li each={ elem, index in this.secondary_actions }>
 														<a href="{ this.base_action_url }&action={ elem.action }&{ this.identifier }={ row[this.identifier] }" title="{ elem.title }">
 															<i class="icon-{ elem.icon }"></i> { elem.title }
@@ -141,7 +141,7 @@
 													{ elem.content }
 												</span>
 											</th>
-											<th></th>
+											<th if={ this.primary_action }></th>
 										</tr>
 									</thead>
 
@@ -259,8 +259,12 @@
 
 		this.base_action_url = currentIndex + "&token={Tools::getAdminTokenLite(Context::getContext()->controller->controller_name)|escape:'htmlall':'UTF-8'}&" + jQuery.param(content.url_params)
 
-		this.primary_action = content.rows_actions.slice(0, 1)[0]
-		this.secondary_actions = content.rows_actions.slice(1)
+		if (typeof content.rows_actions == 'object' && content.rows_actions.length > 0) {
+			this.primary_action = content.rows_actions.slice(0, 1)[0]
+			this.secondary_actions = content.rows_actions.slice(1)
+		}
+		else
+			this.primary_action = null
 
 		this.top_actions = content.top_actions
 
