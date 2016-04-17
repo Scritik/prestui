@@ -30,7 +30,7 @@ You can find more information about RiotJS on [GitHub](https://github.com/muut/r
 
 ## Installation / Usage
 
-To use PrestUI, you need to include the files into your module. Download PrestUI and move the folder in `/views/templates/admin/`
+To use PrestUI, you need to include the files into your module. [Download PrestUI](../../releases) and move the folder in `/views/templates/admin/`
 
 You also need to include RiotJS+compiler since all the components are based on it.
 You can [download a copy](http://riotjs.com/download/) and include it into the module, or you can [use a CDN](http://riotjs.com/download/).
