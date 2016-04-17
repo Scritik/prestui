@@ -1,6 +1,6 @@
-## PrestUI: RiotJS-based UI library for PrestaShop
+## PrestUI: UI library for PrestaShop modules
 
-PrestUI is an UI library to help you develop interfaces for your PrestaShop modules. It allows you to write one concise html, compatible with all recent versions of PrestaShop (1.5 and 1.6). PrestUI will automatically adapt depending on which PrestaShop version the module is used on.
+PrestUI is an UI library to help you develop interfaces for your PrestaShop modules. It allows you to write one concise html, compatible with all recent versions of PrestaShop (1.5, 1.6 and 1.7). PrestUI will automatically adapt depending on which PrestaShop version the module is used on.
 
 Eg, you can write:
 
@@ -8,7 +8,7 @@ Eg, you can write:
 <ps-switch name="switch" label="Switch" yes="Yes" no="No" active="true"></ps-switch>
 ```
 
-And you will automatically get something like this, a valid HTML for PrestaShop (1.6 here):
+And you will automatically get something like this, a valid HTML for PrestaShop (1.6+ here):
 
 ```html
 <div class="form-group">
