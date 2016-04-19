@@ -64,7 +64,7 @@
 		$(this.root).addClass('tab-pane')
 		if (this.parent && this.parent.opts.position == 'left' && this.opts.panel != 'false')
 		{
-			this.tags['ps-panel'].opts.header = opts.title
+			this.tags['ps-panel'].opts.header = opts.label
 			this.tags['ps-panel'].opts.icon = opts.icon
 			this.tags['ps-panel'].opts.img = opts.img
 			this.tags['ps-panel'].opts.fa = opts.fa
