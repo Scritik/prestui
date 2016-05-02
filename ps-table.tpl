@@ -122,7 +122,7 @@
 					</ul>
 
 					<div class="pageTitle">
-						<h3>{ opts.header }</h3>
+						<h3>{ opts.header } <span class="badge">{ this.rows.length }</span></h3>
 					</div>
 				</div>
 			</div>
