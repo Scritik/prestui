@@ -338,7 +338,7 @@
 	<ps-select>
 
 		<ps-form-group>
-			<select name={ opts.name } {if $ps_version >= 1.6}class="{ opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }"{/if}>
+			<select name={ opts.name } class="{ opts.chosen == 'true' ? 'chosen' : '' } {if $ps_version >= 1.6}{ opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }{/if}">
 				<yield/>
 			</select>
 		</ps-form-group>
