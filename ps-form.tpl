@@ -338,12 +338,20 @@
 	<ps-select>
 
 		<ps-form-group>
-			<select name={ opts.name } class="{ opts.chosen == 'true' ? 'chosen' : '' } {if $ps_version >= 1.6}{ opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }{/if}">
+			<select name={ opts.name } class="{ opts.chosen == 'true' ? 'chosen' : '' } {if $ps_version >= 1.6}{ opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }{/if}" onChange={ toggleChangeEvent }>
 				<yield/>
 			</select>
 		</ps-form-group>
 
 		this.tags['ps-form-group'].opts = opts
+
+		toggleChangeEvent(e) {
+			if (e.target)
+				window[this.opts.onChange](e.target.value);
+			else
+				window[this.opts.onChange](e.currentTarget.value); // Chosen
+			e.stopPropagation(); // Chosen
+		}
 
 	</ps-select>
 </script>
@@ -356,9 +364,9 @@
 			{if $ps_version >= 1.6}
 
 				<span class="switch prestashop-switch fixed-width-lg">
-					<input type="radio" name="{ opts.name }" id="{ opts.name }_on" value="1" checked={ opts.active == 'true' } disabled="{ opts.disabled == 'true' }">
+					<input type="radio" name="{ opts.name }" id="{ opts.name }_on" value="1" checked={ opts.active == 'true' } disabled="{ opts.disabled == 'true' }" onChange={ toggleSwitchEvent }>
 					<label for="{ opts.name }_on">{ opts.yes }</label>
-					<input type="radio" name="{ opts.name }" id="{ opts.name }_off" value="0" checked={ opts.active != 'true' } disabled="{ opts.disabled == 'true' }">
+					<input type="radio" name="{ opts.name }" id="{ opts.name }_off" value="0" checked={ opts.active != 'true' } disabled="{ opts.disabled == 'true' }" onChange={ toggleSwitchEvent }>
 					<label for="{ opts.name }_off">{ opts.no }</label>
 					<a class="slide-button btn"></a>
 				</span>
@@ -366,10 +374,10 @@
 			{else}
 
 				<label class="t" for="{ opts.name }_on"><img src="../img/admin/enabled.gif" alt="{ opts.yes }" title="{ opts.yes }"></label>
-				<input type="radio" name="{ opts.name }" id="{ opts.name }_on" value="1" checked={ opts.active == 'true' }>
+				<input type="radio" name="{ opts.name }" id="{ opts.name }_on" value="1" checked={ opts.active == 'true' } onChange={ toggleSwitchEvent }>
 				<label class="t" for="{ opts.name }_on"> { opts.yes }</label>
 				<label class="t" for="{ opts.name }_off"><img src="../img/admin/disabled.gif" alt="{ opts.no }" title="{ opts.no }" style="margin-left: 10px;"></label>
-				<input type="radio" name="{ opts.name }" id="{ opts.name }_off" value="0" checked={ opts.active != 'true' }>
+				<input type="radio" name="{ opts.name }" id="{ opts.name }_off" value="0" checked={ opts.active != 'true' } onChange={ toggleSwitchEvent }>
 				<label class="t" for="{ opts.name }_off"> { opts.no }</label>
 
 			{/if}
@@ -377,6 +385,10 @@
 		</ps-form-group>
 
 		this.tags['ps-form-group'].opts = opts
+
+		toggleSwitchEvent(e) {
+			window[this.opts.onSwitch](+e.target.value);
+		}
 
 	</ps-switch>
 </script>
