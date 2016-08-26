@@ -85,7 +85,7 @@
 				<div class="{ col-md-2: this.opts.position == 'left', col-md-12: this.opts.position != 'left' }">
 					<ul class="{ nav: true, list-group: this.opts.position == 'left', nav-tabs: this.opts.position != 'left' }">
 						<li class="{ list-group-item: this.parent.opts.position == 'left', active: tab.opts.active == 'true' }" each={ tab in this.tags['ps-tab'] }>
-							<a href="#{ tab.opts.id }" data-toggle="tab"><i class="{ tab.opts.icon }" if={ tab.opts.icon }></i> { tab.opts.label }</a>
+							<a href="#{ tab.opts.id }" data-toggle="tab"><i class="{ tab.opts.icon }" if={ tab.opts.icon }></i> { tab.opts.label } <span if={ tab.opts.badge } class="badge pull-right">{ tab.opts.badge }</span></a>
 						</li>
 					</ul>
 				</div>
@@ -104,7 +104,7 @@
 				<ul class="{ tabs-navigation: true, tabs-navigation-left: this.opts.position == 'left', tabs-navigation-top: this.opts.position != 'left' }">
 						<li each={ tab in this.tags['ps-tab'] } class={ active: tab.opts.active == 'true' }>
 							<a href="#{ tab.opts.id }" onclick={ changeTab }>
-							<img src="{ tab.opts.img }" if={ !tab.opts.fa } /><i class="fa fa-{ tab.opts.fa }" if={ tab.opts.fa }></i> { tab.opts.label }
+							<img src="{ tab.opts.img }" if={ !tab.opts.fa } /><i class="fa fa-{ tab.opts.fa }" if={ tab.opts.fa }></i> { tab.opts.label } <span if={ tab.opts.badge } class="badge pull-right">{ tab.opts.badge }</span>
 							</a>
 						</li>
 				</ul>
@@ -160,6 +160,23 @@
 					color: white;
 				}
 
+				.nav.list-group li a {
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+
+				.nav li a .badge {
+					margin-top: -3px;
+					margin-left: 5px;
+				}
+
+				.nav.list-group li a .badge {
+					position: absolute;
+					right: 8px;
+					top: 12px;
+				}
+
 			</style>
 
 		{else}
@@ -196,6 +213,16 @@
 					max-height: 16px;
 				}
 
+				.tabs-navigation li a .badge {
+					background: #EBEDF4;
+					border: 1px solid #EBEDF4;
+					padding: 2px 5px;
+					margin-top: -3px;
+					margin-right: -5px;
+					float: right;
+					margin-left: 10px;
+				}
+
 				.tabs-navigation li.active {
 					background: #EBEDF4;
 				}
@@ -203,6 +230,11 @@
 				.tabs-navigation li.active a {
 					color: black;
 					font-weight: bold;
+				}
+
+				.tabs-navigation li.active a .badge {
+					border-color: #CCCED7;
+					background: #fafafa;
 				}
 
 				.tabs-navigation.tabs-navigation-top {
@@ -236,6 +268,20 @@
 
 				.tabs-navigation.tabs-navigation-left li:last-child {
 					border-bottom: none;
+				}
+
+				.tabs-navigation.tabs-navigation-left li a {
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					position: relative;
+				}
+
+				.tabs-navigation.tabs-navigation-left li a .badge {
+					float: none;
+					position: absolute;
+					right: 12px;
+					top: 10px;
 				}
 
 			</style>
