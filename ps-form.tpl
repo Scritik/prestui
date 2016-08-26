@@ -452,7 +452,7 @@
 	<ps-color-picker>
 		<ps-form-group>
 
-			<div class="{if $ps_version == '1.6'}input-group{/if} { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : 'i-lg' }">
+			<div class="{if $ps_version == '1.6'}input-group{/if} { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }">
 				<input type="color" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
 			</div>
 
