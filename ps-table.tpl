@@ -210,6 +210,14 @@
 					font-weight: normal;
 				}
 
+				> .toolbar-placeholder .pageTitle h3 .badge {
+					font-size: 14px;
+					border: 1px solid #CCCCCC;
+					border-radius: 4%;
+					padding: 3px 8px;
+					vertical-align: top;
+				}
+
 				> form {
 					margin-bottom: 15px;
 				}
