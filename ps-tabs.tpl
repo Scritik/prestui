@@ -85,7 +85,7 @@
 				<div class="{ col-md-2: this.opts.position == 'left', col-md-12: this.opts.position != 'left' }">
 					<ul class="{ nav: true, list-group: this.opts.position == 'left', nav-tabs: this.opts.position != 'left' }">
 						<li class="{ list-group-item: this.parent.opts.position == 'left', active: tab.opts.active == 'true' }" each={ tab in this.tags['ps-tab'] }>
-							<a href="#{ tab.opts.id }" data-toggle="tab"><i class="{ tab.opts.icon }" if={ tab.opts.icon }></i> { tab.opts.title }</a>
+							<a href="#{ tab.opts.id }" data-toggle="tab"><i class="{ tab.opts.icon }" if={ tab.opts.icon }></i> { tab.opts.label }</a>
 						</li>
 					</ul>
 				</div>
@@ -104,7 +104,7 @@
 				<ul class="{ tabs-navigation: true, tabs-navigation-left: this.opts.position == 'left', tabs-navigation-top: this.opts.position != 'left' }">
 						<li each={ tab in this.tags['ps-tab'] } class={ active: tab.opts.active == 'true' }>
 							<a href="#{ tab.opts.id }" onclick={ changeTab }>
-							<img src="{ tab.opts.img }" if={ !tab.opts.fa } /><i class="fa fa-{ tab.opts.fa }" if={ tab.opts.fa }></i> { tab.opts.title }
+							<img src="{ tab.opts.img }" if={ !tab.opts.fa } /><i class="fa fa-{ tab.opts.fa }" if={ tab.opts.fa }></i> { tab.opts.label }
 							</a>
 						</li>
 				</ul>
