@@ -68,7 +68,7 @@
 				<span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
 
 			{/if}
-			
+
 	</ps-input-text-core>
 </script>
 
@@ -332,6 +332,20 @@
 			tinySetup({ editor_selector: "autoload_rte" })
 		}
 	});
+</script>
+
+<script type="riot/tag">
+	<ps-select>
+
+		<ps-form-group>
+			<select name={ opts.name } {if $ps_version >= 1.6}class="{ opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }"{/if}>
+				<yield/>
+			</select>
+		</ps-form-group>
+
+		this.tags['ps-form-group'].opts = opts
+
+	</ps-select>
 </script>
 
 <script type="riot/tag">
