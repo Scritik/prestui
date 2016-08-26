@@ -122,7 +122,7 @@
 					</ul>
 
 					<div class="pageTitle">
-						<h3>{ opts.header }</h3>
+						<h3>{ opts.header } <span class="badge">{ this.rows.length }</span></h3>
 					</div>
 				</div>
 			</div>
@@ -208,6 +208,14 @@
 
 				> .toolbar-placeholder .pageTitle h3 {
 					font-weight: normal;
+				}
+
+				> .toolbar-placeholder .pageTitle h3 .badge {
+					font-size: 14px;
+					border: 1px solid #CCCCCC;
+					border-radius: 4%;
+					padding: 3px 8px;
+					vertical-align: top;
 				}
 
 				> form {
