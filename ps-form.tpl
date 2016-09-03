@@ -357,6 +357,61 @@
 </script>
 
 <script type="riot/tag">
+	<ps-group>
+		<yield/>
+	</ps-group>
+</script>
+
+<script type="riot/tag">
+	<ps-groups>
+
+		<ps-form-group>
+			<div class="hide"><yield/></div>
+			<table class="table table-bordered" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th class="fixed-width-xs">
+							<span class="title_box">
+								<input type="checkbox" name="checkme" id="checkme" onclick="checkDelBoxes(this.form, '{ this.opts.name }[]', this.checked)">
+							</span>
+						</th>
+						<th class="fixed-width-xs"><span class="title_box">ID</span></th>
+						<th><span class="title_box">{ this.opts.columnTitle }</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr each={ group in this.groups }>
+						<td><input type="checkbox" name="{ group.parent.opts.name }[]" class="groupBox" id="{ group.parent.opts.name }_{ group.opts.value }" value="{ group.opts.value }"></td>
+						<td>{ group.opts.value }</td>
+						<td><label for="{ group.parent.opts.name }_{ group.opts.value }" class="t">{ group.root.innerHTML }</label></td>
+					</tr>
+				</tbody>
+			</table>
+		</ps-form-group>
+
+		<style scoped>
+
+			.hide {
+				display: none;
+			}
+
+			table {
+				width: auto !important;
+				min-width: 28em;
+			}
+
+		</style>
+
+		console.log(this.opts.name);
+		this.tags['ps-form-group'].opts = opts
+		this.groups = this.tags['ps-form-group'].tags['ps-group']
+		if (!this.groups.length)
+			this.groups = [this.groups];
+
+	</ps-groups>
+</script>
+
+<script type="riot/tag">
 	<ps-switch>
 
 		<ps-form-group>
