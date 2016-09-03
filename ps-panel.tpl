@@ -209,3 +209,15 @@
 
 	</ps-panel>
 </script>
+
+<script type="riot/tag">
+	<ps-panel-divider>
+
+		{if $ps_version >= 1.6}
+			<hr/>
+		{else}
+			<div class="separation"></div>
+		{/if}
+
+	</ps-panel-divider>
+</script>
