@@ -28,7 +28,7 @@
 		{if $ps_version >= 1.6}
 
 			<div class="form-group">
-				<label class="control-label col-lg-3 { opts.required == 'true' ? 'required' : '' }">
+				<label class="control-label col-lg-3 { opts.requiredInput == 'true' ? 'required' : '' }">
 					<span class="label-tooltip" data-toggle="tooltip" data-html="true" data-original-title="{ opts.hint }" if={ opts.hint }>{ opts.label }</span>
 					<span if={ !opts.hint }>{ opts.label }</span>
 				</label>
@@ -40,7 +40,7 @@
 
 			<div style="clear: both; padding-top:15px;">
 
-				<label class="conf_title"><sup if={ opts.required }>*&nbsp;</sup>{ opts.label }</label>
+				<label class="conf_title"><sup if={ opts.requiredInput }>*&nbsp;</sup>{ opts.label }</label>
 				<div class="margin-form">
 					<yield/>
 					<p class="preference_description" if={ opts.help }><raw content="{ opts.help }"/></p>
@@ -75,13 +75,11 @@
 <script type="riot/tag">
 	<ps-input-text>
 
-		<ps-form-group>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
 
-			<ps-input-text-core name="{ opts.name }" fixed-width="{ opts.fixedWidth }" suffix="{ opts.suffix }" prefix="{ opts.prefix }" placeholder="{ opts.placeholder }" required-input="{ opts.requiredInput }" size="{ opts.size }" value="{ opts.value }"></ps-input-text-core>
+			<ps-input-text-core name="{ parent.opts.name }" fixed-width="{ parent.opts.fixedWidth }" suffix="{ parent.opts.suffix }" prefix="{ parent.opts.prefix }" placeholder="{ parent.opts.placeholder }" required-input="{ parent.opts.requiredInput }" size="{ parent.opts.size }" value="{ parent.opts.value }"></ps-input-text-core>
 
 		</ps-form-group>
-
-		this.tags['ps-form-group'].opts = opts
 
 	</ps-input-text>
 </script>
@@ -140,7 +138,7 @@
 
 		{/if}
 
-		this.tags['ps-form-group'].opts = opts
+		//this.tags['ps-form-group'].opts = opts
 
 	</ps-input-text-lang>
 </script>
@@ -209,7 +207,7 @@
 
 		</ps-form-group>
 
-		this.tags['ps-form-group'].opts = opts
+		//this.tags['ps-form-group'].opts = opts
 
 	</ps-textarea>
 
@@ -269,7 +267,7 @@
 
 		{/if}
 
-		this.tags['ps-form-group'].opts = opts
+		//this.tags['ps-form-group'].opts = opts
 
 	</ps-textarea-lang>
 </script>
@@ -343,7 +341,7 @@
 			</select>
 		</ps-form-group>
 
-		this.tags['ps-form-group'].opts = opts
+		//this.tags['ps-form-group'].opts = opts
 
 		toggleChangeEvent(e) {
 			if (e.target)
@@ -402,8 +400,7 @@
 
 		</style>
 
-		console.log(this.opts.name);
-		this.tags['ps-form-group'].opts = opts
+		//this.tags['ps-form-group'].opts = opts
 		this.groups = this.tags['ps-form-group'].tags['ps-group']
 		if (!this.groups.length)
 			this.groups = [this.groups];
@@ -412,50 +409,11 @@
 </script>
 
 <script type="riot/tag">
-	<ps-switch>
-
-		<ps-form-group>
-
-			{if $ps_version >= 1.6}
-
-				<span class="switch prestashop-switch fixed-width-lg">
-					<input type="radio" name="{ opts.name }" id="{ opts.name }_on" value="1" checked={ opts.active == 'true' } disabled="{ opts.disabled == 'true' }" onChange={ toggleSwitchEvent }>
-					<label for="{ opts.name }_on">{ opts.yes }</label>
-					<input type="radio" name="{ opts.name }" id="{ opts.name }_off" value="0" checked={ opts.active != 'true' } disabled="{ opts.disabled == 'true' }" onChange={ toggleSwitchEvent }>
-					<label for="{ opts.name }_off">{ opts.no }</label>
-					<a class="slide-button btn"></a>
-				</span>
-
-			{else}
-
-				<label class="t" for="{ opts.name }_on"><img src="../img/admin/enabled.gif" alt="{ opts.yes }" title="{ opts.yes }"></label>
-				<input type="radio" name="{ opts.name }" id="{ opts.name }_on" value="1" checked={ opts.active == 'true' } onChange={ toggleSwitchEvent }>
-				<label class="t" for="{ opts.name }_on"> { opts.yes }</label>
-				<label class="t" for="{ opts.name }_off"><img src="../img/admin/disabled.gif" alt="{ opts.no }" title="{ opts.no }" style="margin-left: 10px;"></label>
-				<input type="radio" name="{ opts.name }" id="{ opts.name }_off" value="0" checked={ opts.active != 'true' } onChange={ toggleSwitchEvent }>
-				<label class="t" for="{ opts.name }_off"> { opts.no }</label>
-
-			{/if}
-
-		</ps-form-group>
-
-		this.tags['ps-form-group'].opts = opts
-
-		toggleSwitchEvent(e) {
-			window[this.opts.onSwitch](+e.target.value);
-		}
-
-	</ps-switch>
-</script>
-
-<script type="riot/tag">
 	<ps-radios>
 
-		<ps-form-group>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
 			<yield/>
 		</ps-form-group>
-
-		this.tags['ps-form-group'].opts = opts
 
 	</ps-radios>
 </script>
@@ -483,11 +441,9 @@
 <script type="riot/tag">
 	<ps-checkboxes>
 
-		<ps-form-group>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
 			<yield/>
 		</ps-form-group>
-
-		this.tags['ps-form-group'].opts = opts
 
 	</ps-checkboxes>
 </script>
@@ -498,8 +454,8 @@
 		{if $ps_version >= 1.6}
 
 			<div class="checkbox">
-				<label for="{ opts.name }_{ opts.value }">
-					<input type="checkbox" name="{ opts.name }" checked={ opts.checked == 'true' } value="{ opts.value }">
+				<label>
+					<input type="checkbox" name="{ opts.name }[]" checked={ opts.checked == 'true' } value="{ opts.value }">
 					<yield/>
 				</label>
 			</div>
@@ -517,9 +473,9 @@
 
 <script type="riot/tag">
 	<ps-color-picker>
-		<ps-form-group>
-
-			<div class="{if $ps_version == '1.6'}input-group{/if} { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }">
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
+			{ console.log(parent) }
+			<div class="{if $ps_version == '1.6'}input-group{/if} { popts.fixedWidth ? 'fixed-width-'+popts.fixedWidth : '' }">
 				<input type="color" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
 			</div>
 
@@ -536,12 +492,14 @@
 
 		</ps-form-group>
 
-		this.tags['ps-form-group'].opts = opts
+		popts = [];
 		this.on('mount', function() {
+			//popts = parent;
+			console.log(parent.parent.opts)
+
 			// Fix for mColorPicker
 			$(this.root).find('input[type=color]').attr('value', opts.color)
 		})
-
 
 	</ps-color-picker>
 </script>
@@ -567,7 +525,7 @@
 
 		</ps-form-group>
 
-		this.tags['ps-form-group'].opts = opts
+		//this.tags['ps-form-group'].opts = opts
 
 	</ps-password>
 </script>
@@ -593,7 +551,7 @@
 
 		</ps-form-group>
 
-		this.tags['ps-form-group'].opts = opts
+		//this.tags['ps-form-group'].opts = opts
 
 	</ps-date-picker>
 </script>
@@ -608,4 +566,43 @@
 			});
 		}
 	});
+</script>
+
+<script type="riot/tag">
+	<ps-switch>
+
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
+
+			{if $ps_version >= 1.6}
+
+				<span class="switch prestashop-switch fixed-width-lg">
+
+					<input type="radio" name="{ parent.opts.name }" id="{ parent.opts.name }_on" value="1" checked={ opts.active == 'true' } disabled="{ opts.disabled == 'true' }" onchange={ parent.toggleSwitchEvent } />
+					<label for="{ parent.opts.name }_on">{ parent.opts.yes }</label>
+
+					<input type="radio" name="{ parent.opts.name }" id="{ parent.opts.name }_off" value="0" checked={ opts.active != 'true' } disabled="{ parent.opts.disabled == 'true' }" onchange={ parent.toggleSwitchEvent } />
+					<label for="{ parent.opts.name }_off">{ parent.opts.no }</label>
+
+					<a class="slide-button btn"></a>
+
+				</span>
+
+			{else}
+
+				<label class="t" for="{ parent.opts.name }_on"><img src="../img/admin/enabled.gif" alt="{ parent.opts.yes }" title="{ parent.opts.yes }"></label>
+				<input type="radio" name="{ parent.opts.name }" id="{ parent.opts.name }_on" value="1" checked={ parent.opts.active == 'true' } onChange={ parent.toggleSwitchEvent } />
+				<label class="t" for="{ parent.opts.name }_on"> { parent.opts.yes }</label>
+				<label class="t" for="{ parent.opts.name }_off"><img src="../img/admin/disabled.gif" alt="{ parent.opts.no }" title="{ parent.opts.no }" style="margin-left: 10px;"></label>
+				<input type="radio" name="{ parent.opts.name }" id="{ parent.opts.name }_off" value="0" checked={ opts.active != 'true' } onChange={ parent.toggleSwitchEvent } />
+				<label class="t" for="{ parent.opts.name }_off"> { parent.opts.no }</label>
+
+			{/if}
+
+		</ps-form-group>
+
+		toggleSwitchEvent(e) {
+			window[this.opts.onSwitch](+e.target.value);
+		}
+
+	</ps-switch>
 </script>

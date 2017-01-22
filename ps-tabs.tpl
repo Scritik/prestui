@@ -26,7 +26,7 @@
 
 	<ps-tab>
 
-		<ps-panel if={ opts.panel != 'false' }>
+		<ps-panel if={ opts.panel != 'false' } icon="{ this.icon }"  header="{ this.header }" img="{ opts.img }" fa="{ opts.fa }">
 			<yield/>
 		</ps-panel>
 
@@ -39,7 +39,7 @@
 			<style scoped>
 
 				.panel {
-				  border-top-left-radius: 0 !important;
+					border-top-left-radius: 0 !important;
 					border-top-right-radius: 0 !important;
 				}
 
@@ -61,14 +61,13 @@
 
 		{/if}
 
-		$(this.root).addClass('tab-pane')
-		if (this.parent && this.parent.opts.position == 'left' && this.opts.panel != 'false')
-		{
-			this.tags['ps-panel'].opts.header = opts.label
-			this.tags['ps-panel'].opts.icon = opts.icon
-			this.tags['ps-panel'].opts.img = opts.img
-			this.tags['ps-panel'].opts.fa = opts.fa
+		if (this.parent && this.parent.opts.position != 'top') {
+			this.header = opts.label;
+			this.icon = opts.icon;
 		}
+		$(this.root).addClass('tab-pane')
+		if (this.opts.active == 'true')
+			$(this.root).addClass('active')
 
 	</ps-tab>
 
@@ -84,7 +83,7 @@
 
 				<div class="{ col-md-2: this.opts.position == 'left', col-md-12: this.opts.position != 'left' }">
 					<ul class="{ nav: true, list-group: this.opts.position == 'left', nav-tabs: this.opts.position != 'left' }">
-						<li class="{ list-group-item: this.parent.opts.position == 'left', active: tab.opts.active == 'true' }" each={ tab in this.tags['ps-tab'] }>
+						<li class="{ list-group-item: this.parent.opts.position == 'left', active: tab.opts.active == 'true' }" each={ tab in this.tabs }>
 							<a href="#{ tab.opts.id }" data-toggle="tab"><i class="{ tab.opts.icon }" if={ tab.opts.icon }></i> { tab.opts.label } <span if={ tab.opts.badge } class="badge pull-right">{ tab.opts.badge }</span></a>
 						</li>
 					</ul>
@@ -102,7 +101,7 @@
 			<div class="tabs-container">
 
 				<ul class="{ tabs-navigation: true, tabs-navigation-left: this.opts.position == 'left', tabs-navigation-top: this.opts.position != 'left' }">
-						<li each={ tab in this.tags['ps-tab'] } class={ active: tab.opts.active == 'true' }>
+						<li each={ tab in this.tabs } class={ active: tab.opts.active == 'true' }>
 							<a href="#{ tab.opts.id }" onclick={ changeTab }>
 							<img src="{ tab.opts.img }" if={ !tab.opts.fa } /><i class="fa fa-{ tab.opts.fa }" if={ tab.opts.fa }></i> { tab.opts.label } <span if={ tab.opts.badge } class="badge pull-right">{ tab.opts.badge }</span>
 							</a>
@@ -120,13 +119,11 @@
 		{/if}
 
 		this.on('mount', function() {
-			that = this
-			that.tags['ps-tab'].forEach(function(elem) {
-				if (elem.opts.active == 'true')
-					$(elem.root).addClass('active')
-			})
+			this.tabs = this.tags['ps-tab'];
+			this.update();
 		})
 
+		// Only PS 1.5
 		changeTab(event) {
 			// Change active tab
 			$(this.root).find('> .tabs-container > ul > li.active').removeClass('active')
