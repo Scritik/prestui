@@ -87,7 +87,7 @@
 <script type="riot/tag">
 	<ps-input-text-lang>
 
-		<ps-form-group>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
 
 			{if $ps_version >= 1.6}
 
@@ -138,8 +138,6 @@
 
 		{/if}
 
-		//this.tags['ps-form-group'].opts = opts
-
 	</ps-input-text-lang>
 </script>
 
@@ -147,10 +145,9 @@
 	<ps-input-text-lang-value>
 
 		{if $ps_version >= 1.6}
-
-			<div class="translatable-field row lang-{ this.opts.idLang }" style="display: { this.parent.opts.activeLang == this.opts.idLang ? 'block' : 'none' };">
-				<div class="col-lg-{ this.parent.opts.colLg }">
-					<ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }" placeholder="{ opts.placeholder }" required-input="{ this.parent.opts.requiredInput }" fixed-width="{ this.parent.opts.fixedWidth }" value="{ opts.value }"></ps-input-text-core>
+			<div class="translatable-field row lang-{ this.opts.idLang }" style="display: { this.activeLang == this.opts.idLang ? 'block' : 'none' };">
+				<div class="col-lg-{ this.parentOpts.colLg }">
+					<ps-input-text-core name="{ this.parentOpts.name }_{ this.opts.idLang }" placeholder="{ opts.placeholder }" required-input="{ this.parentOpts.requiredInput }" fixed-width="{ this.parentOpts.fixedWidth }" value="{ opts.value }"></ps-input-text-core>
 				</div>
 				<div class="col-lg-2">
 					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
@@ -166,15 +163,18 @@
 			</div>
 
 			this.langs = []
-
+			this.parentOpts = []
 			this.on('mount', function() {
 				that = this
 				if (that.parent)
 				{
+					if (that.parent.parent)
+						that.parentOpts = that.parent.parent.opts
 					that.parent.tags['ps-input-text-lang-value'].forEach(function(elem) {
 						that.langs.push(elem.opts)
 					})
 					that.update()
+					hideOtherLanguage(that.parentOpts.activeLang)
 				}
 			})
 
@@ -201,13 +201,11 @@
 
 	<ps-textarea>
 
-		<ps-form-group>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
 
-			<ps-textarea-core rich-editor="{ opts.richEditor }" name="{ opts.name }" rows="{ opts.rows }" cols="{ opts.cols }"><yield/></ps-textarea-core>
+			<ps-textarea-core rich-editor="{ parent.opts.richEditor }" name="{ parent.opts.name }" rows="{ parent.opts.rows }" cols="{ parent.opts.cols }"><yield/></ps-textarea-core>
 
 		</ps-form-group>
-
-		//this.tags['ps-form-group'].opts = opts
 
 	</ps-textarea>
 
@@ -216,7 +214,7 @@
 <script type="riot/tag">
 	<ps-textarea-lang>
 
-		<ps-form-group>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
 
 			{if $ps_version >= 1.6}
 
@@ -267,8 +265,6 @@
 
 		{/if}
 
-		//this.tags['ps-form-group'].opts = opts
-
 	</ps-textarea-lang>
 </script>
 
@@ -277,9 +273,9 @@
 
 		{if $ps_version >= 1.6}
 
-			<div class="translatable-field row lang-{ this.opts.idLang }" style="display: { this.parent.opts.activeLang == this.opts.idLang ? 'block' : 'none' };">
-				<div class="col-lg-{ this.parent.opts.colLg }">
-					<ps-textarea-core name="{ this.parent.opts.name }_{ this.opts.idLang }" rows="{ this.parent.parent.opts.rows }" cols="{ this.parent.parent.opts.cols }" rich-editor="{ this.parent.opts.richEditor }"><yield/></ps-textarea-core>
+			<div class="translatable-field row lang-{ this.opts.idLang }" style="display: { this.parentOpts.activeLang == this.opts.idLang ? 'block' : 'none' };">
+				<div class="col-lg-{ this.parentOpts.colLg }">
+					<ps-textarea-core name="{ this.parentOpts.name }_{ this.opts.idLang }" rows="{ this.parentOpts.rows }" cols="{ this.parentOpts.cols }" rich-editor="{ this.parentOpts.richEditor }"><yield/></ps-textarea-core>
 				</div>
 				<div class="col-lg-2">
 					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
@@ -295,15 +291,18 @@
 			</div>
 
 			this.langs = []
-
+			this.parentOpts = []
 			this.on('mount', function() {
 				that = this
 				if (that.parent)
 				{
+					if (that.parent.parent)
+						that.parentOpts = that.parent.parent.opts
 					that.parent.tags['ps-textarea-lang-value'].forEach(function(elem) {
 						that.langs.push(elem.opts)
 					})
 					that.update()
+					hideOtherLanguage(that.parentOpts.activeLang)
 				}
 			})
 
@@ -335,13 +334,11 @@
 <script type="riot/tag">
 	<ps-select>
 
-		<ps-form-group>
-			<select name={ opts.name } class="{ opts.chosen == 'true' ? 'chosen' : '' } {if $ps_version >= 1.6}{ opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }{/if}" onChange={ toggleChangeEvent }>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
+			<select name={ parent.opts.name } class="{ parent.opts.chosen == 'true' ? 'chosen' : '' } {if $ps_version >= 1.6}{ parent.opts.fixedWidth ? 'fixed-width-'+parent.opts.fixedWidth : '' }{/if}" onChange={ toggleChangeEvent }>
 				<yield/>
 			</select>
 		</ps-form-group>
-
-		//this.tags['ps-form-group'].opts = opts
 
 		toggleChangeEvent(e) {
 			if (e.target)
@@ -363,25 +360,25 @@
 <script type="riot/tag">
 	<ps-groups>
 
-		<ps-form-group>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
 			<div class="hide"><yield/></div>
 			<table class="table table-bordered" cellpadding="0" cellspacing="0">
 				<thead>
 					<tr>
 						<th class="fixed-width-xs">
 							<span class="title_box">
-								<input type="checkbox" name="checkme" id="checkme" onclick="checkDelBoxes(this.form, '{ this.opts.name }[]', this.checked)">
+								<input type="checkbox" name="checkme" id="checkme" onclick="checkDelBoxes(this.form, '{ parent.opts.name }[]', this.checked)">
 							</span>
 						</th>
 						<th class="fixed-width-xs"><span class="title_box">ID</span></th>
-						<th><span class="title_box">{ this.opts.columnTitle }</span></th>
+						<th><span class="title_box">{ parent.opts.columnTitle }</span></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr each={ group in this.groups }>
-						<td><input type="checkbox" name="{ group.parent.opts.name }[]" class="groupBox" id="{ group.parent.opts.name }_{ group.opts.value }" value="{ group.opts.value }"></td>
-						<td>{ group.opts.value }</td>
-						<td><label for="{ group.parent.opts.name }_{ group.opts.value }" class="t">{ group.root.innerHTML }</label></td>
+					<tr each={ group in this.parent.groups }>
+						<td><input type="checkbox" name="{ group.name }[]" class="groupBox" id="{ group.name }_{ group.value }" value="{ group.value }"></td>
+						<td>{ group.value }</td>
+						<td><label for="{ group.name }_{ group.value }" class="t">{ group.content }</label></td>
 					</tr>
 				</tbody>
 			</table>
@@ -400,10 +397,22 @@
 
 		</style>
 
-		//this.tags['ps-form-group'].opts = opts
-		this.groups = this.tags['ps-form-group'].tags['ps-group']
-		if (!this.groups.length)
-			this.groups = [this.groups];
+		this.groups = []
+
+		this.on('mount', function() {
+			that = this
+			if (that.parent)
+			{
+				that.tags['ps-form-group'].tags['ps-group'].forEach(function(elem) {
+					group = []
+					group['value'] = elem.opts.value
+					group['content'] = elem.root.innerHTML
+					group['name'] = that.opts.name
+					that.groups.push(group)
+				})
+				that.update()
+			}
+		})
 
 	</ps-groups>
 </script>
@@ -474,9 +483,8 @@
 <script type="riot/tag">
 	<ps-color-picker>
 		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
-			{ console.log(parent) }
-			<div class="{if $ps_version == '1.6'}input-group{/if} { popts.fixedWidth ? 'fixed-width-'+popts.fixedWidth : '' }">
-				<input type="color" size="{ opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ opts.name }" id="{ opts.name }">
+			<div class="{if $ps_version == '1.6'}input-group{/if} { parent.opts.fixedWidth ? 'fixed-width-'+parent.opts.fixedWidth : '' }">
+				<input type="color" size="{ parent.opts.size || 20 }" data-hex="true" class="color mColorPickerInput mColorPicker" name="{ parent.opts.name }" id="{ parent.opts.name }">
 			</div>
 
 			<style scoped>
@@ -492,11 +500,7 @@
 
 		</ps-form-group>
 
-		popts = [];
 		this.on('mount', function() {
-			//popts = parent;
-			console.log(parent.parent.opts)
-
 			// Fix for mColorPicker
 			$(this.root).find('input[type=color]').attr('value', opts.color)
 		})
@@ -506,38 +510,35 @@
 
 <script type="riot/tag">
 	<ps-password>
-		<ps-form-group>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
 
 			{if $ps_version >= 1.6}
 
-				<div class="input-group { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }">
+				<div class="input-group { parent.opts.fixedWidth ? 'fixed-width-'+parent.opts.fixedWidth : '' }">
 					<span class="input-group-addon">
 						<i class="icon-key"></i>
 					</span>
-					<input type="password" name="{ opts.name }" required="{ opts.requiredInput == 'true' }" value="{ opts.value }">
+					<input type="password" name="{ parent.opts.name }" required="{ parent.opts.requiredInput == 'true' }" value="{ parent.opts.value }">
 				</div>
 
 			{else}
 
-				<input type="password" size="{ opts.size }" name="{ opts.name }" required="{ opts.requiredInput == 'true' }" value="{ opts.value }">
+				<input type="password" size="{ parent.opts.size }" name="{ parent.opts.name }" required="{ parent.opts.requiredInput == 'true' }" value="{ parent.opts.value }">
 
 			{/if}
 
 		</ps-form-group>
-
-		//this.tags['ps-form-group'].opts = opts
-
 	</ps-password>
 </script>
 
 <script type="riot/tag">
 	<ps-date-picker>
-		<ps-form-group>
+		<ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
 
 			{if $ps_version >= 1.6}
 
-				<div class="input-group { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }">
-					<input id="{ opts.name }" type="text" data-hex="true" class="datepicker" name="{ opts.name }" value="{ opts.value }" required="{ opts.requiredInput == 'true' }" />
+				<div class="input-group { parent.opts.fixedWidth ? 'fixed-width-'+parent.opts.fixedWidth : '' }">
+					<input id="{ parent.opts.name }" type="text" data-hex="true" class="datepicker" name="{ parent.opts.name }" value="{ parent.opts.value }" required="{ parent.opts.requiredInput == 'true' }" />
 					<span class="input-group-addon">
 						<i class="icon-calendar-empty"></i>
 					</span>
@@ -545,13 +546,12 @@
 
 			{else}
 
-				<input id="{ opts.name }" type="text" data-hex="true" size="{ opts.size }" class="datepicker" name="{ opts.name }" value="{ opts.value }" required="{ opts.requiredInput == 'true' }" />
+				<input id="{ parent.opts.name }" type="text" data-hex="true" size="{ parent.opts.size }" class="datepicker" name="{ parent.opts.name }" value="{ parent.opts.value }" required="{ parent.opts.requiredInput == 'true' }" />
 
 			{/if}
 
 		</ps-form-group>
 
-		//this.tags['ps-form-group'].opts = opts
 
 	</ps-date-picker>
 </script>
