@@ -340,6 +340,14 @@
             </select>
         </ps-form-group>
 
+        <style scoped>
+
+            .chosen-container {
+                width: 250px !important;
+            }
+
+        </style>
+
         toggleChangeEvent(e) {
             if (e.target)
                 window[this.opts.onChange](e.target.value);
