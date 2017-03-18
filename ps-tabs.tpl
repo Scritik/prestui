@@ -134,7 +134,7 @@
             id_target = $(event.target).closest('a').attr('href')
             $(this.root).find('> .tabs-container > .tabs-content > ' + id_target).addClass('active')
 
-            event.stopPropagation();
+            event.preventDefault();
 
             return false
         }
