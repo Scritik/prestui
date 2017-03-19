@@ -23,201 +23,201 @@
 *}
 
 <script type="riot/tag">
-	<ps-panel-footer>
-		<div class="panel-footer">
-			<yield/>
-		</div>
+    <ps-panel-footer>
+        <div class="panel-footer">
+            <yield/>
+        </div>
 
-		<style scoped>
+        <style scoped>
 
-			{if $ps_version >= 1.6}
+            {if $ps_version >= 1.6}
 
-				.btn.pull-right {
-					margin-left: 5px;
-				}
-				.btn.pull-left {
-					margin-right: 5px;
-				}
+                .btn.pull-right {
+                    margin-left: 5px;
+                }
+                .btn.pull-left {
+                    margin-right: 5px;
+                }
 
-				a.btn i {
-					display: block;
-					width: 30px;
-					height: 30px;
-					margin: 0 auto;
-					font-size: 28px;
-					background: transparent;
-					background-size: 26px;
-					background-position: center
-				}
+                a.btn i {
+                    display: block;
+                    width: 30px;
+                    height: 30px;
+                    margin: 0 auto;
+                    font-size: 28px;
+                    background: transparent;
+                    background-size: 26px;
+                    background-position: center
+                }
 
-			{else}
+            {else}
 
-				.panel-footer {
-					margin: 20px -13px 0px;
-					background: rgba(182, 182, 182, 0.1);
-					display: block;
-					border-top: 1px solid rgba(160, 160, 160, 0.19);
-					height: 80px;
-					position: relative;
-					bottom: -13px;
-				}
+                .panel-footer {
+                    margin: 20px -13px 0px;
+                    background: rgba(182, 182, 182, 0.1);
+                    display: block;
+                    border-top: 1px solid rgba(160, 160, 160, 0.19);
+                    height: 80px;
+                    position: relative;
+                    bottom: -13px;
+                }
 
-				.btn {
-					margin: 0;
-					background: none;
-					border: none;
-					padding: 0 20px;
-					outline: none;
-					cursor: pointer;
-					font-size: 11px;
-					text-align: center;
-					height: 100%;
-					line-height: normal;
-				}
+                .btn {
+                    margin: 0;
+                    background: none;
+                    border: none;
+                    padding: 0 20px;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 11px;
+                    text-align: center;
+                    height: 100%;
+                    line-height: normal;
+                }
 
-				.btn.pull-right {
-					border-left: 1px solid rgba(160, 160, 160, 0.19);
-					float: right;
-				}
+                .btn.pull-right {
+                    border-left: 1px solid rgba(160, 160, 160, 0.19);
+                    float: right;
+                }
 
-				.btn.pull-left {
-					border-right: 1px solid rgba(160, 160, 160, 0.19);
-					float: left;
-				}
+                .btn.pull-left {
+                    border-right: 1px solid rgba(160, 160, 160, 0.19);
+                    float: left;
+                }
 
-				.btn:hover {
-					background: rgba(182, 182, 182, 0.1);
-				}
+                .btn:hover {
+                    background: rgba(182, 182, 182, 0.1);
+                }
 
-				.btn img {
-					display: block;
-					padding: 0;
-					margin-bottom: 5px;
-					margin-left: auto;
-					margin-right: auto;
-				}
+                .btn img {
+                    display: block;
+                    padding: 0;
+                    margin-bottom: 5px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
 
-			{/if}
+            {/if}
 
-		</style>
-	</ps-panel-footer>
+        </style>
+    </ps-panel-footer>
 </script>
 
 <script type="riot/tag">
-	<ps-panel-footer-submit>
+    <ps-panel-footer-submit>
 
-		{if $ps_version >= 1.6}
+        {if $ps_version >= 1.6}
 
-			<button type="submit" class="btn btn-default pull-{ opts.direction }" name="{ opts.name }">
-				<i class="{ opts.icon }"></i> { opts.title }
-			</button>
+            <button type="submit" class="btn btn-default pull-{ opts.direction }" name="{ opts.name }">
+                <i class="{ opts.icon }"></i> { opts.title }
+            </button>
 
-		{else}
+        {else}
 
-			<button type="submit" class="btn pull-{ opts.direction }" name="{ opts.name }">
-				<img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.title }
-			</button>
+            <button type="submit" class="btn pull-{ opts.direction }" name="{ opts.name }">
+                <img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.title }
+            </button>
 
-			<style scoped>
+            <style scoped>
 
-				button i.fa {
-					display: block;
-					font-size: 2.5em;
-					margin-bottom: 5px;
-					color: #585a69;
-				}
+                button i.fa {
+                    display: block;
+                    font-size: 2.5em;
+                    margin-bottom: 5px;
+                    color: #585a69;
+                }
 
-			</style>
+            </style>
 
-		{/if}
+        {/if}
 
-	</ps-panel-footer-submit>
+    </ps-panel-footer-submit>
 </script>
 
 <script type="riot/tag">
-	<ps-panel-footer-link>
+    <ps-panel-footer-link>
 
-		{if $ps_version >= 1.6}
+        {if $ps_version >= 1.6}
 
-			<a class="btn btn-default pull-{ opts.direction }" href="{ opts.href }">
-				<i class="{ opts.icon }"></i> { opts.title }
-			</a>
+            <a class="btn btn-default pull-{ opts.direction }" href="{ opts.href }" target="{ opts.newTab == 'true' ? '_blank' : '' }">
+                <i class="{ opts.icon }"></i> { opts.title }
+            </a>
 
-		{else}
+        {else}
 
-			<a class="btn pull-{ opts.direction }" href="{ opts.href }">
-				<img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.title }
-			</a>
+            <a class="btn pull-{ opts.direction }" href="{ opts.href }" target="{ opts.newTab == 'true' ? '_blank' : '' }">
+                <img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.title }
+            </a>
 
-			<style scoped>
+            <style scoped>
 
-				a img {
-					margin-top: 15px;
-				}
+                a img {
+                    margin-top: 15px;
+                }
 
-				a i.fa {
-					display: block;
-					font-size: 2.5em;
-					margin-bottom: 5px;
-					color: #585a69;
-					margin-top: 18px;
-				}
+                a i.fa {
+                    display: block;
+                    font-size: 2.5em;
+                    margin-bottom: 5px;
+                    color: #585a69;
+                    margin-top: 18px;
+                }
 
-			</style>
+            </style>
 
-		{/if}
+        {/if}
 
-	</ps-panel-footer-link>
+    </ps-panel-footer-link>
 </script>
 
 <script type="riot/tag">
-	<ps-panel>
+    <ps-panel>
 
-		{if $ps_version >= 1.6}
+        {if $ps_version >= 1.6}
 
-			<div class="panel">
-				<div class="panel-heading" if={ opts.icon || opts.header }>
-						<i class="{ opts.icon }" if={ opts.icon }></i> { opts.header }
-				</div>
+            <div class="panel">
+                <div class="panel-heading" if={ opts.icon || opts.header }>
+                        <i class="{ opts.icon }" if={ opts.icon }></i> { opts.header }
+                </div>
 
-				<yield/>
+                <yield/>
 
-			</div>
+            </div>
 
-		{else}
+        {else}
 
-			<fieldset>
-				<legend if={ opts.header }>
-					<img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.header }
-				</legend>
+            <fieldset>
+                <legend if={ opts.header }>
+                    <img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.header }
+                </legend>
 
-				<yield/>
+                <yield/>
 
-			</fieldset>
+            </fieldset>
 
-			<style scoped>
+            <style scoped>
 
-				fieldset {
-					margin-bottom: 20px;
-					margin-left: auto;
-					margin-right: auto;
-				}
+                fieldset {
+                    margin-bottom: 20px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
 
-			</style>
+            </style>
 
-		{/if}
+        {/if}
 
-	</ps-panel>
+    </ps-panel>
 </script>
 
 <script type="riot/tag">
-	<ps-panel-divider>
+    <ps-panel-divider>
 
-		{if $ps_version >= 1.6}
-			<hr/>
-		{else}
-			<div class="separation"></div>
-		{/if}
+        {if $ps_version >= 1.6}
+            <hr/>
+        {else}
+            <div class="separation"></div>
+        {/if}
 
-	</ps-panel-divider>
+    </ps-panel-divider>
 </script>
