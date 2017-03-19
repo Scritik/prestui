@@ -126,8 +126,12 @@
             this.langs = []
 
             this.on('mount', function() {
-                that = this
-                that.tags['ps-form-group'].tags['ps-input-text-lang-value'].forEach(function(elem) {
+                var that = this
+                if (Array.isArray(that.tags['ps-form-group'].tags['ps-input-text-lang-value']))
+                    values = that.tags['ps-form-group'].tags['ps-input-text-lang-value'];
+                else
+                    values = [that.tags['ps-form-group'].tags['ps-input-text-lang-value']];
+                values.forEach(function(elem) {
                     that.langs.push(elem.opts)
                     $(elem.root).addClass('lang_'+elem.opts.idLang)
                     if (that.opts.activeLang != elem.opts.idLang)
@@ -162,27 +166,32 @@
                 </div>
             </div>
 
-            this.langs = []
-            this.parentOpts = []
-            this.on('mount', function() {
-                that = this
-                if (that.parent)
-                {
-                    if (that.parent.parent)
-                        that.parentOpts = that.parent.parent.opts
-                    that.parent.tags['ps-input-text-lang-value'].forEach(function(elem) {
-                        that.langs.push(elem.opts)
-                    })
-                    that.update()
-                    hideOtherLanguage(that.parentOpts.activeLang)
-                }
-            })
-
         {else}
 
-            <ps-input-text-core name="{ this.parent.opts.name }_{ this.opts.idLang }" placeholder="{ opts.placeholder }" required-input="{ this.parent.opts.requiredInput }" size="{ this.parent.opts.size }" value="{ opts.value }"></ps-input-text-core>
+            <ps-input-text-core name="{ this.parentOpts.name }_{ opts.idLang }" placeholder="{ opts.placeholder }" required-input="{ this.parentOpts.requiredInput }" size="{ this.parentOpts.size }" value="{ opts.value }"></ps-input-text-core>
 
         {/if}
+
+        this.langs = []
+        this.parentOpts = []
+        this.on('mount', function() {
+            that = this
+            if (that.parent)
+            {
+                if (that.parent.parent)
+                    that.parentOpts = that.parent.parent.opts
+                if (Array.isArray(that.parent.parent.tags['ps-form-group'].tags['ps-input-text-lang-value']))
+                    values = that.parent.parent.tags['ps-form-group'].tags['ps-input-text-lang-value'];
+                else
+                    values = [that.parent.parent.tags['ps-form-group'].tags['ps-input-text-lang-value']];
+                values.forEach(function(elem) {
+                    that.langs.push(elem.opts)
+                })
+                that.update()
+                if (typeof hideOtherLanguage != 'undefined')
+                    hideOtherLanguage(that.parentOpts.activeLang)
+            }
+        })
 
     </ps-input-text-lang-value>
 </script>
@@ -254,7 +263,11 @@
 
             this.on('mount', function() {
                 that = this
-                that.tags['ps-form-group'].tags['ps-textarea-lang-value'].forEach(function(elem) {
+                if (Array.isArray(that.tags['ps-form-group'].tags['ps-textarea-lang-value']))
+                    values = that.tags['ps-form-group'].tags['ps-textarea-lang-value'];
+                else
+                    values = [that.tags['ps-form-group'].tags['ps-textarea-lang-value']];
+                values.forEach(function(elem) {
                     that.langs.push(elem.opts)
                     $(elem.root).addClass('lang_'+elem.opts.idLang)
                     if (that.opts.activeLang != elem.opts.idLang)
@@ -290,27 +303,32 @@
                 </div>
             </div>
 
-            this.langs = []
-            this.parentOpts = []
-            this.on('mount', function() {
-                that = this
-                if (that.parent)
-                {
-                    if (that.parent.parent)
-                        that.parentOpts = that.parent.parent.opts
-                    that.parent.tags['ps-textarea-lang-value'].forEach(function(elem) {
-                        that.langs.push(elem.opts)
-                    })
-                    that.update()
-                    hideOtherLanguage(that.parentOpts.activeLang)
-                }
-            })
-
         {else}
 
-            <ps-textarea-core name="{ this.parent.opts.name }_{ this.opts.idLang }" rows="{ this.parent.parent.opts.rows }" cols="{ this.parent.parent.opts.cols }" rich-editor="{ this.parent.opts.richEditor }"><yield/></ps-textarea-core>
+            <ps-textarea-core name="{ this.parentOpts.name }_{ this.opts.idLang }" rows="{ this.parentOpts.rows }" cols="{ this.parentOpts.cols }" rich-editor="{ this.parentOpts.richEditor }"><yield/></ps-textarea-core>
 
         {/if}
+
+        this.langs = []
+        this.parentOpts = []
+        this.on('mount', function() {
+            that = this
+            if (that.parent)
+            {
+                if (that.parent.parent)
+                    that.parentOpts = that.parent.parent.opts
+                if (Array.isArray(that.parent.parent.tags['ps-form-group'].tags['ps-textarea-lang-value']))
+                    values = that.parent.parent.tags['ps-form-group'].tags['ps-textarea-lang-value'];
+                else
+                    values = [that.parent.parent.tags['ps-form-group'].tags['ps-textarea-lang-value']];
+                values.forEach(function(elem) {
+                    that.langs.push(elem.opts)
+                })
+                that.update()
+                if (typeof hideOtherLanguage != 'undefined')
+                    hideOtherLanguage(that.parentOpts.activeLang)
+            }
+        })
 
     </ps-textarea-lang-value>
 </script>
