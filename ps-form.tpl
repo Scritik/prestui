@@ -59,13 +59,13 @@
 
                     <div class="{literal}{ opts.prefix || opts.suffix ? 'input-group input ' : '' }{ opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }{/literal}">
                         <span class="input-group-addon" if={ opts.prefix }>{ opts.prefix}</span>
-                        <input type="text" name="{ opts.name }" value="{ opts.value }" class="input { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }">
+                        <input type="text" name="{ opts.name }" value="{ opts.riotValue }" class="input { opts.fixedWidth ? 'fixed-width-'+opts.fixedWidth : '' }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }">
                         <span class="input-group-addon" if={ opts.suffix }>{ opts.suffix}</span>
                     </div>
 
             {else}
 
-                <span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.value }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
+                <span if={ opts.prefix }>{ opts.prefix }&nbsp;</span><input type="text" size="{ opts.size }" name="{ opts.name }" value="{ opts.riotValue }" placeholder="{ opts.placeholder }" required="{ opts.requiredInput == 'true' }"><span if={ opts.suffix }>&nbsp;{ opts.suffix }</span>
 
             {/if}
 
