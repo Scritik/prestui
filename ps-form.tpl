@@ -544,12 +544,12 @@
                     <span class="input-group-addon">
                         <i class="icon-key"></i>
                     </span>
-                    <input type="password" name="{ parent.opts.name }" required="{ parent.opts.requiredInput == 'true' }" value="{ parent.opts.value }">
+                    <input type="password" name="{ parent.opts.name }" required="{ parent.opts.requiredInput == 'true' }">
                 </div>
 
             {else}
 
-                <input type="password" size="{ parent.opts.size }" name="{ parent.opts.name }" required="{ parent.opts.requiredInput == 'true' }" value="{ parent.opts.value }">
+                <input type="password" size="{ parent.opts.size }" name="{ parent.opts.name }" required="{ parent.opts.requiredInput == 'true' }">
 
             {/if}
 
