@@ -627,7 +627,9 @@
         </ps-form-group>
 
         toggleSwitchEvent(e) {
-            window[this.opts.onSwitch](+e.target.value);
+            if (typeof window[this.opts.onSwitch] !== 'undefined') {
+                window[this.opts.onSwitch](+e.target.value);
+            }
         }
 
     </ps-switch>
