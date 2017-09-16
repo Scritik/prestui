@@ -353,7 +353,7 @@
     <ps-select>
 
         <ps-form-group hint="{ opts.hint }" required-input="{ opts.requiredInput }" label="{ opts.label }" help="{ opts.help }">
-            <select name={ parent.opts.name } class="{ parent.opts.chosen == 'true' ? 'chosen' : '' } {if $ps_version >= 1.6}{ parent.opts.fixedWidth ? 'fixed-width-'+parent.opts.fixedWidth : '' }{/if}" onChange={ toggleChangeEvent }>
+            <select name={ parent.opts.name } class="{ parent.opts.chosen == 'true' ? 'chosen' : '' } {if $ps_version >= 1.6}{ parent.opts.fixedWidth ? 'fixed-width-'+parent.opts.fixedWidth : '' }{/if}" onChange={ parent.toggleChangeEvent }>
                 <yield/>
             </select>
         </ps-form-group>
