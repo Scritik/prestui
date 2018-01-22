@@ -619,7 +619,7 @@
                 <input type="radio" name="{ parent.opts.name }" id="{ parent.opts.name }_on" value="1" checked={ parent.opts.active == 'true' } onChange={ parent.toggleSwitchEvent } />
                 <label class="t" for="{ parent.opts.name }_on"> { parent.opts.yes }</label>
                 <label class="t" for="{ parent.opts.name }_off"><img src="../img/admin/disabled.gif" alt="{ parent.opts.no }" title="{ parent.opts.no }" style="margin-left: 10px;"></label>
-                <input type="radio" name="{ parent.opts.name }" id="{ parent.opts.name }_off" value="0" checked={ opts.active != 'true' } onChange={ parent.toggleSwitchEvent } />
+                <input type="radio" name="{ parent.opts.name }" id="{ parent.opts.name }_off" value="0" checked={ parent.opts.active != 'true' } onChange={ parent.toggleSwitchEvent } />
                 <label class="t" for="{ parent.opts.name }_off"> { parent.opts.no }</label>
 
             {/if}
