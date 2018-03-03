@@ -343,7 +343,7 @@
     var ad = "{$smarty.const.__PS_BASE_URI__|escape:'htmlall':'UTF-8'}{basename($smarty.const._PS_ADMIN_DIR_)|escape:'quotes':'UTF-8'}";
 
     $( document ).ready(function() {
-        if ($("ps-textarea .autoload_rte").length > 0) {
+        if ($("ps-textarea-core .autoload_rte").length > 0) {
             tinySetup({ editor_selector: "autoload_rte" })
         }
     });
