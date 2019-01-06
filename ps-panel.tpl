@@ -108,13 +108,13 @@
 
         {if $ps_version >= 1.6}
 
-            <button type="submit" class="btn btn-default pull-{ opts.direction }" name="{ opts.name }">
+            <button type="submit" class="btn btn-default pull-{ opts.direction }" name="{ opts.name }" disabled="{ opts.disabled }">
                 <i class="{ opts.icon }"></i> { opts.title }
             </button>
 
         {else}
 
-            <button type="submit" class="btn pull-{ opts.direction }" name="{ opts.name }">
+            <button type="submit" class="btn pull-{ opts.direction }" name="{ opts.name }" disabled="{ opts.disabled }">
                 <img src="{ opts.img }" if={ !opts.fa } /><i class="fa fa-{ opts.fa }" if={ opts.fa }></i> { opts.title }
             </button>
 
