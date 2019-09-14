@@ -25,15 +25,15 @@ And you will automatically get something like this, a valid HTML for PrestaShop 
 </div>
 ```
 
-PrestUI is based on RiotJS, a really light React-like user interface library.
-You can find more information about RiotJS on [GitHub](https://github.com/muut/riotjs) and a full documentation on the [official website](https://muut.com/riotjs/).
+PrestUI is based on RiotJS 3, a really light React-like user interface library.
+You can find more information about RiotJS on [GitHub](https://github.com/riot/riot) and a full documentation on the [official website](https://riot.js.org).
 
 ## Installation / Usage
 
 To use PrestUI, you need to include the files into your module. [Download PrestUI](../../releases) and move the folder in `/views/templates/admin/`
 
 You also need to include RiotJS+compiler since all the components are based on it.
-You can [download a copy](http://riotjs.com/download/) and include it into the module, or you can [use a CDN](http://riotjs.com/download/).
+You can [download a copy](https://unpkg.com/riot@3/riot+compiler.min.js) and include it into the module, or you can [use a CDN](https://unpkg.com/riot@3/riot+compiler.min.js).
 
 You can now include PrestUI and RiotJS like this:
 
